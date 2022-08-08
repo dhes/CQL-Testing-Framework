@@ -1,0 +1,1502 @@
+name: some-guy
+data:
+  - resourceType: Patient
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
+    extension:
+      - url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-race
+        extension:
+          - url: ombCategory
+            valueCoding: urn:oid:2.16.840.1.113883.6.238#2106-3 White
+          - url: text
+            valueString: White
+    active: true
+    name: Some Guy
+    gender: male
+    birthDate: 1953-06-05
+    identifier: 
+      - type: http://terminology.hl7.org/CodeSystem/v2-0203#MR Medical Record Number
+        system: http://hospital.smarthealthit.org
+        value: 16201950429185
+  - resourceType: Condition
+    code: ICD-10-CM#H40.1290 Low-tension glaucoma, unspecified eye, stage unspecified
+    onsetDateTime: 2013-09-14
+  - resourceType: Condition
+    code: ICD-10-CM#Z86.010 Personal history of colonic polyps
+    onsetDateTime: 2011-07-12
+  - resourceType: Observation
+    category: http://terminology.hl7.org/CodeSystem/observation-category##laboratory Laboratory
+    code: LOINC#2085-9 Cholesterol in HDL [Mass/volume] in Serum or Plasma
+    effectiveDateTime: 2017-11-20
+    valueQuantity: 62 mg/dL
+  - resourceType: Observation
+    code: LOINC#79423-0 Cardiovascular disease 10Y risk [Likelihood] ACC-AHA Pooled Cohort by Goff 2013
+    effectiveDateTime: 2022-02-21
+    valueQuantity: 11.66 %
+  - resourceType: Observation
+    code: LOINC#72166-2 Tobacco smoking status
+    valueCodeableConcept: SNOMEDCT#266919005 Never smoked tobacco (finding)
+    effectiveDateTime: 2022-02-16
+  - resourceType: Observation
+    code: LOINC#2093-3 Cholesterol [Mass/volume] in Serum or Plasma
+    effectiveDateTime: 2017-11-20
+    valueQuantity: 183 mg/dL
+  - resourceType: Observation
+    code: LOINC#85354-9 Blood pressure panel with all children optional
+    effectiveDateTime: 2019-05-22
+    component:
+      - code:
+          coding:
+            - system: http://loinc.org
+              code: 8480-6
+              display: Systolic blood pressure
+          text: Systolic blood pressure
+        valueQuantity:
+          value: 117
+          unit: mmHg
+          system: http://unitsofmeasure.org
+          code: mm[Hg]
+      - code:
+          coding:
+            - system: http://loinc.org
+              code: 8462-4
+              display: Diastolic blood pressure
+          text: Diastolic blood pressure
+        valueQuantity:
+          value: 75
+          unit: mmHg
+          system: http://unitsofmeasure.org
+          code: mm[Hg]
+  - resourceType: Procedure
+    code: SNOMEDCT#736719000 Repair of left inguinal hernia (procedure)
+    performedString: As a toddler
+  - resourceType: Procedure
+    code: SNOMEDCT#736720006 Repair of right inguinal hernia (procedure)
+    performedString: As a toddler
+  - resourceType: Procedure
+    code: SNOMEDCT#22523008 Vasectomy (procedure)
+    performedString: after 1994
+  - resourceType: Procedure
+    code: SNOMEDCT#171841007 Endoscopic carpal tunnel release (procedure)
+    bodySite: SNOMEDCT#5951000 Structure of left wrist region (body structure)
+    performedDateTime: 2019-03-27
+  - resourceType: Procedure
+    code: SNOMEDCT#385468004 Cataract extraction and insertion of intraocular lens (procedure)
+    bodySite: SNOMEDCT#8966001 Left eye
+    performedDateTime: 2020-02-03
+  - resourceType: FamilyMemberHistory
+    sex: http://hl7.org/fhir/administrative-gender#male
+    relationship: http://terminology.hl7.org/CodeSystem/v3-RoleCode#BRO brother
+    condition:
+      - code: ICD-10-CM#C61 Malignant neoplasm of prostate
+        outcome: SNOMEDCT#103338009 In full remission (qualifier value)
+      - code: ICD-10-CM#C7A.8 Other malignant neuroendocrine tumors
+        outcome: SNOMEDCT#103338009 In full remission (qualifier value)
+  - resourceType: Observation
+    code: LOINC#13457-7 Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation
+    valueQuantity: 113 mg/dL
+    # done at Castle Hospital see https://www.myadventisthealthportal.org/
+    effectiveDateTime: 2013-01-04
+  - resourceType: MedicationStatement
+    # first Rx date per Elation
+    effectiveDateTime: 2018-08-21
+    code: RXNORM#859751 rosuvastatin calcium 20 MG Oral Tablet
+  - resourceType: MedicationStatement
+    # first  first Rx date per Elation
+    effectiveDateTime: 2014-02-26
+    code: RXNORM#314072 latanoprost 0.005 % Ophthalmic Solution
+  - resourceType: MedicationStatement
+    # first Rx date per Elation
+    effectiveDateTime: 2019-03-07
+    code: RXNORM#1992873 Rhopressa 0.02 % Ophthalmic Solution
+  - resourceType: MedicationRequest
+    # most recent refill request
+    authoredOn: 2022-02-15
+    code: RXNORM#859751 rosuvastatin calcium 20 MG Oral Tablet
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#208 COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose
+    occurrenceDateTime: 2021-01-20
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#208 COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose
+    occurrenceDateTime: 2021-02-11
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#208 COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose
+    occurrenceDateTime: 2021-10-20
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#208 COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose
+    occurrenceDateTime: 2022-07-22
+    note:
+      text: Walgreen Liliha Professional Building
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#197 influenza, high-dose seasonal, quadrivalent, .7mL dose, preservative free
+    occurrenceDateTime: 2021-08-17
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#33 pneumococcal polysaccharide vaccine, 23 valent
+    occurrenceDateTime: 2021-08-18
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#115 tetanus toxoid, reduced diphtheria toxoid, and acellular pertussis vaccine, adsorbed
+    occurrenceDateTime: 2012-03-05
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#133 pneumococcal conjugate vaccine, 13 valent
+    occurrenceDateTime: 2018-06-06
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#03 measles, mumps and rubella virus vaccine
+    occurrenceDateTime: 2011-04-15
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#187 zoster vaccine recombinant
+    occurrenceDateTime: 2018-04-26
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#187 zoster vaccine recombinant
+    occurrenceDateTime: 2019-05-15
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#52 hepatitis A vaccine, adult dosage
+    occurrenceDateTime: 2011-04-15
+  - resourceType: Immunization
+    meta:
+      profile:
+        - http://hl7.org/fhir/us/core/StructureDefinition/us-core-immunization
+    vaccineCode: CVX#115 tetanus toxoid, reduced diphtheria toxoid, and acellular pertussis vaccine, adsorbed
+    occurrenceDateTime: 2022-07-06
+    note:
+      text: Walgreens Beretania
+  # 2011-07-12 colonoscopy - see 2011_polyps.yml
+  # 2019 colonoscopy - see 2019_polyps.yml
+  # 2020-07-24 colonoscopy - see 2020_polyps.yml
+  # 2021-10-04 colonoscopy - see 2021_polyps.yml
+  # polyp granular observations referenced across Specimens and DiagnosticReports
+  # plan to remove this from this file and append to file when YYYY_polyps are processed
+  - resourceType: Observation
+    id: f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
+    code: LOINC#34574-4 Pathology report final diagnosis
+    valueCodeableConcept: SNOMEDCT#444408007 Tubular adenoma (disorder)
+  - resourceType: Observation
+    id: 93b40608-5c08-4917-b396-7a660df76587
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
+    code: LOINC#34574-4 Pathology report final diagnosis
+    valueCodeableConcept: SNOMEDCT#89452002 Hyperplastic polyp of intestine (disorder)
+  - resourceType: Observation
+    id: 9a5ada92-bb53-4cf3-a04b-11a0e672e1f1
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
+    code: LOINC#34574-4 Pathology report final diagnosis
+    valueCodeableConcept: SNOMEDCT#68534000 Intestinal mucous membrane structure (body structure)
+  - resourceType: Observation
+    id: abcb49db-960b-4de6-aa0a-2e072c438dd4
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
+    code: SNOMEDCT#55237006 Severe dysplasia (morphologic abnormality)
+    valueBoolean: false
+  - resourceType: Observation
+    id: 71f00532-66d9-4634-aa0e-bff0aafaf9a1
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
+    code: SNOMEDCT#110396000 No evidence of malignant neoplasm (finding)
+    valueBoolean: true
+  - resourceType: Observation
+    id: a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+    category: http://terminology.hl7.org/CodeSystem/observation-category#procedure Procedure
+    code: SNOMEDCT#787139004 Piecemeal excision
+    valueBoolean: false
+  - resourceType: Observation
+    id: 27336643-3d3b-41e3-9cc2-5e46524ceb00
+    category: http://terminology.hl7.org/CodeSystem/observation-category#procedure Procedure
+    code: SNOMEDCT#787139004 Piecemeal excision
+    valueBoolean: true
+  - resourceType: Procedure
+    id: ea681cfb-3907-48a6-a153-a9fb114eac6f
+    code: SNOMEDCT#25732003 Fiberoptic colonoscopy with biopsy (procedure)
+    performedDateTime: 2011-07-12T00:00:00.000Z
+  - resourceType: Procedure
+    code: SNOMEDCT#311774002 Colonoscopic polypectomy (procedure)
+    performedDateTime: 2011-07-12T00:00:00.000Z
+    partOf:
+      - reference: Procedure/ea681cfb-3907-48a6-a153-a9fb114eac6f
+        display: Colonoscopy
+    report:
+      - reference: DiagnosticReport/8de9dee7-2e18-4cb3-ae4e-3652329a62de
+        display: Surgical Pathology
+  - resourceType: DiagnosticReport
+    id: 8de9dee7-2e18-4cb3-ae4e-3652329a62de
+    category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
+    code: LOINC#11529-5 Surgical pathology study
+    effectiveDateTime: 2011-07-12T00:00:00.000Z
+    issued: 2011-07-13T00:00:00.000Z
+    specimen:
+      - reference: Specimen/a49b5664-7cf9-4660-950e-20ca28dff502
+        display: A. Transverse colon polyp 1
+      - reference: Specimen/f0504744-5f52-496c-b5b2-971d16b9a8ad
+        display: B. Transverse colon polyp 2
+      - reference: Specimen/7f73944d-1e7c-4e08-b4db-be679145a2c3
+        display: C. Transverse colon polyp 3
+      - reference: Specimen/a0bbdea9-7757-4e1c-8016-1cfec0ce76d2
+        display: D. Transverse colon polyp 4
+      - reference: Specimen/d69cfd36-db74-4531-93d6-98c8611d4bc7
+        display: E. Descending colon polyp
+      - reference: Specimen/68477821-05d4-43bf-919f-8021a4b80bd3
+        display: F. Sigmoid colon polyp
+    result:
+      - reference: Observation/1bf91ba7-d099-4a6b-9953-764a2ae88906
+        display: A. Transverse colon polyp 1
+      - reference: Observation/478c41d4-e817-4f05-a78e-cef00b0c6bfa
+        display: B. Transverse colon polyp 2
+      - reference: Observation/e83f71e0-b9fb-4c5e-a8ff-ff562c520dda
+        display: C. Transverse colon polyp 3
+      - reference: Observation/55f4eb76-5cef-449e-be11-2fcda7c5b1e9
+        display: D. Transverse colon polyp 4
+      - reference: Observation/1ece44ff-fcf5-47c5-ac42-2ad842d37606
+        display: E. Descending colon polyp
+      - reference: Observation/29ffa3b7-8d37-46ba-a3d6-f13d307f0b89
+        display: F. Sigmoid colon polyp
+  - resourceType: Specimen
+    id: a49b5664-7cf9-4660-950e-20ca28dff502
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: A. Transverse colon polyp 1
+  - resourceType: Observation
+    id: 1bf91ba7-d099-4a6b-9953-764a2ae88906
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/a49b5664-7cf9-4660-950e-20ca28dff502
+      display: A. Transverse colon polyp 1
+    hasMember:
+      - reference: Observation/93b40608-5c08-4917-b396-7a660df76587
+        display: Hyperplastic Polyp
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: f0504744-5f52-496c-b5b2-971d16b9a8ad
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse colon polyp 2
+  - resourceType: Observation
+    id: 478c41d4-e817-4f05-a78e-cef00b0c6bfa
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/f0504744-5f52-496c-b5b2-971d16b9a8ad
+      display: B. Transverse colon polyp 2
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 7f73944d-1e7c-4e08-b4db-be679145a2c3
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: C. Transverse colon polyp 3
+  - resourceType: Observation
+    id: e83f71e0-b9fb-4c5e-a8ff-ff562c520dda
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/7f73944d-1e7c-4e08-b4db-be679145a2c3
+      display: C. Transverse colon polyp 3
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: a0bbdea9-7757-4e1c-8016-1cfec0ce76d2
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: D. Transverse colon polyp 4
+  - resourceType: Observation
+    id: 55f4eb76-5cef-449e-be11-2fcda7c5b1e9
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/a0bbdea9-7757-4e1c-8016-1cfec0ce76d2
+      display: D. Transverse colon polyp 4
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: d69cfd36-db74-4531-93d6-98c8611d4bc7
+    collection:
+      bodySite: SNOMEDCT#32622004 Descending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: E. Descending colon polyp
+  - resourceType: Observation
+    id: 1ece44ff-fcf5-47c5-ac42-2ad842d37606
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/d69cfd36-db74-4531-93d6-98c8611d4bc7
+      display: E. Descending colon polyp
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 68477821-05d4-43bf-919f-8021a4b80bd3
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2011-07-12T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: F. Sigmoid colon polyp
+  - resourceType: Observation
+    id: 29ffa3b7-8d37-46ba-a3d6-f13d307f0b89
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/68477821-05d4-43bf-919f-8021a4b80bd3
+      display: F. Sigmoid colon polyp
+    hasMember:
+      - reference: Observation/9a5ada92-bb53-4cf3-a04b-11a0e672e1f1
+        display: Mucosal fold
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Procedure
+    id: 991868fb-e441-479d-a3df-67628fab9c84
+    code: SNOMEDCT#25732003 Fiberoptic colonoscopy with biopsy (procedure)
+    performedDateTime: 2019-07-22T00:00:00.000Z
+  - resourceType: Procedure
+    code: SNOMEDCT#311774002 Colonoscopic polypectomy (procedure)
+    performedDateTime: 2019-07-22T00:00:00.000Z
+    partOf:
+      - reference: Procedure/991868fb-e441-479d-a3df-67628fab9c84
+        display: Colonoscopy
+    report:
+      - reference: DiagnosticReport/31255dbc-5a4c-466b-8f1f-c334fe5ba76f
+        display: Surgical Pathology
+  - resourceType: DiagnosticReport
+    id: 31255dbc-5a4c-466b-8f1f-c334fe5ba76f
+    category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
+    code: LOINC#11529-5 Surgical pathology study
+    effectiveDateTime: 2019-07-22T00:00:00.000Z
+    issued: 2019-07-23T00:00:00.000Z
+    specimen:
+      - reference: Specimen/8a270de5-d414-4b4a-96b5-43974c58ecdd
+        display: D. Snared Cecal Polyp
+      - reference: Specimen/3d3b5c0f-e922-4c77-b810-1a8f62e825db
+        display: E. Snared Ascending Colon Polyp
+      - reference: Specimen/d2fffcd5-76f0-47c1-a03c-9e3ddfff3567
+        display: F. Descending Colon Polyp 1
+      - reference: Specimen/0700b2ab-8b8d-412a-baff-d357afd2f67e
+        display: F. Descending Colon Polyps 2
+      - reference: Specimen/2a2f1739-956b-4284-8308-d49865185292
+        display: F. Descending Colon Polyp 3
+      - reference: Specimen/0a0885e3-2313-4a19-adc8-769930e34b3f
+        display: G. Sigmoid colon 1
+      - reference: Specimen/ebe7d791-44ba-46b7-8f97-65f3ce6e36ea
+        display: G. Sigmoid colon 2
+      - reference: Specimen/92839e2e-36e9-4b15-af24-c24422e5b031
+        display: G. Sigmoid colon 3
+      - reference: Specimen/f3494fb9-790c-4266-960a-618c23ad986e
+        display: G. Sigmoid colon 4
+      - reference: Specimen/aef23908-8eaf-438e-9559-58746aec446c
+        display: G. Sigmoid colon 5
+      - reference: Specimen/214844af-dc3b-41bd-9f41-0f57ebc5e45d
+        display: H. Rectal polyp
+    result:
+      - reference: Observation/f823de38-0029-4c86-b952-12a183fdc9c1
+        display: D. Snared Cecal Polyp
+      - reference: Observation/60a1255a-3dd3-4d69-86fa-fd902af59154
+        display: E. Snared Ascending Colon Polyp
+      - reference: Observation/450f7845-19c8-4083-896b-04560a34cb60
+        display: F. Descending Colon Polyp 1
+      - reference: Observation/7af84b74-d3ec-4a17-980c-8d72aafa1cf5
+        display: F. Descending Colon Polyps 2
+      - reference: Observation/d71a23f1-2a21-4e60-a02d-d1a625b5867c
+        display: F. Descending Colon Polyp 3
+      - reference: Observation/30bf39e4-c043-478c-af94-3dad330c9285
+        display: G. Sigmoid colon 1
+      - reference: Observation/25c1ba9a-ec0d-4722-8443-5d6412720154
+        display: G. Sigmoid colon 2
+      - reference: Observation/3d40e87b-0e98-4c5c-bbeb-2127cf2ac662
+        display: G. Sigmoid colon 3
+      - reference: Observation/eae5d0d5-9595-4cbc-bd32-9f218ec6f9e7
+        display: G. Sigmoid colon 4
+      - reference: Observation/c228f4b3-bc12-49d6-be36-de44d3e19c9d
+        display: G. Sigmoid colon 5
+      - reference: Observation/c9e1f157-b1e4-40a9-adbc-95acc6d3f9e9
+        display: H. Rectal polyp
+  - resourceType: Specimen
+    id: 8a270de5-d414-4b4a-96b5-43974c58ecdd
+    collection:
+      bodySite: SNOMEDCT#32713005 Cecum structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: D. Snared Cecal Polyp
+  - resourceType: Observation
+    id: f823de38-0029-4c86-b952-12a183fdc9c1
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/8a270de5-d414-4b4a-96b5-43974c58ecdd
+      display: D. Snared Cecal Polyp
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 3d3b5c0f-e922-4c77-b810-1a8f62e825db
+    collection:
+      bodySite: SNOMEDCT#9040008 Ascending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 25 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: E. Snared Ascending Colon Polyp
+  - resourceType: Observation
+    id: 60a1255a-3dd3-4d69-86fa-fd902af59154
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/3d3b5c0f-e922-4c77-b810-1a8f62e825db
+      display: E. Snared Ascending Colon Polyp
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/27336643-3d3b-41e3-9cc2-5e46524ceb00
+        display: Piecemeal excision true
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: d2fffcd5-76f0-47c1-a03c-9e3ddfff3567
+    collection:
+      bodySite: SNOMEDCT#32622004 Descending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: F. Descending Colon Polyp 1
+  - resourceType: Observation
+    id: 450f7845-19c8-4083-896b-04560a34cb60
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/d2fffcd5-76f0-47c1-a03c-9e3ddfff3567
+      display: F. Descending Colon Polyp 1
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 0700b2ab-8b8d-412a-baff-d357afd2f67e
+    collection:
+      bodySite: SNOMEDCT#32622004 Descending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 10 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: F. Descending Colon Polyps 2
+  - resourceType: Observation
+    id: 7af84b74-d3ec-4a17-980c-8d72aafa1cf5
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/0700b2ab-8b8d-412a-baff-d357afd2f67e
+      display: F. Descending Colon Polyps 2
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 2a2f1739-956b-4284-8308-d49865185292
+    collection:
+      bodySite: SNOMEDCT#32622004 Descending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: F. Descending Colon Polyp 3
+  - resourceType: Observation
+    id: d71a23f1-2a21-4e60-a02d-d1a625b5867c
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/2a2f1739-956b-4284-8308-d49865185292
+      display: F. Descending Colon Polyp 3
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 0a0885e3-2313-4a19-adc8-769930e34b3f
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: G. Sigmoid colon 1
+  - resourceType: Observation
+    id: 30bf39e4-c043-478c-af94-3dad330c9285
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/0a0885e3-2313-4a19-adc8-769930e34b3f
+      display: G. Sigmoid colon 1
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: ebe7d791-44ba-46b7-8f97-65f3ce6e36ea
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: G. Sigmoid colon 2
+  - resourceType: Observation
+    id: 25c1ba9a-ec0d-4722-8443-5d6412720154
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/ebe7d791-44ba-46b7-8f97-65f3ce6e36ea
+      display: G. Sigmoid colon 2
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 92839e2e-36e9-4b15-af24-c24422e5b031
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: G. Sigmoid colon 3
+  - resourceType: Observation
+    id: 3d40e87b-0e98-4c5c-bbeb-2127cf2ac662
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/92839e2e-36e9-4b15-af24-c24422e5b031
+      display: G. Sigmoid colon 3
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: f3494fb9-790c-4266-960a-618c23ad986e
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: G. Sigmoid colon 4
+  - resourceType: Observation
+    id: eae5d0d5-9595-4cbc-bd32-9f218ec6f9e7
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/f3494fb9-790c-4266-960a-618c23ad986e
+      display: G. Sigmoid colon 4
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: aef23908-8eaf-438e-9559-58746aec446c
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: G. Sigmoid colon 5
+  - resourceType: Observation
+    id: c228f4b3-bc12-49d6-be36-de44d3e19c9d
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/aef23908-8eaf-438e-9559-58746aec446c
+      display: G. Sigmoid colon 5
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 214844af-dc3b-41bd-9f41-0f57ebc5e45d
+    collection:
+      bodySite: SNOMEDCT#34402009 Rectum structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2019-07-22T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: H. Rectal polyp
+  - resourceType: Observation
+    id: c9e1f157-b1e4-40a9-adbc-95acc6d3f9e9
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/214844af-dc3b-41bd-9f41-0f57ebc5e45d
+      display: H. Rectal polyp
+    hasMember:
+      - reference: Observation/93b40608-5c08-4917-b396-7a660df76587
+        display: Hyperplastic Polyp
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Procedure
+    id: bcc092fa-be5b-4f75-a308-7bd44538af05
+    code: SNOMEDCT#25732003 Fiberoptic colonoscopy with biopsy (procedure)
+    performedDateTime: 2020-07-24T00:00:00.000Z
+  - resourceType: Procedure
+    code: SNOMEDCT#311774002 Colonoscopic polypectomy (procedure)
+    performedDateTime: 2020-07-24T00:00:00.000Z
+    partOf:
+      - reference: Procedure/bcc092fa-be5b-4f75-a308-7bd44538af05
+        display: Colonoscopy
+    report:
+      - reference: DiagnosticReport/f7526f49-f492-45e3-88c7-ec7d3a21d204
+        display: Surgical Pathology
+  - resourceType: DiagnosticReport
+    id: f7526f49-f492-45e3-88c7-ec7d3a21d204
+    category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
+    code: LOINC#11529-5 Surgical pathology study
+    effectiveDateTime: 2020-07-24T00:00:00.000Z
+    issued: 2020-07-25T00:00:00.000Z
+    specimen:
+      - reference: Specimen/b659e742-4ce1-49e6-afc7-d87e08271135
+        display: A. Ascending colon polyp cold snare
+      - reference: Specimen/affb3b47-0e25-4df9-b250-b46e53e99427
+        display: B. Transverse polyp cold biopsy 1
+      - reference: Specimen/b37ed537-398b-45b1-a605-53a8e7119834
+        display: B. Transverse polyp cold biopsy 2
+      - reference: Specimen/981bc3c8-c3c9-43bb-9b40-4c90aad18806
+        display: B. Transverse polyp cold biopsy 3
+      - reference: Specimen/3d8984db-b1eb-4776-879d-369c1870e9df
+        display: B. Transverse polyp cold biopsy 4
+      - reference: Specimen/b06d92ae-86b3-4415-85aa-a7c380cdf5d8
+        display: B. Transverse polyp cold biopsy 5
+      - reference: Specimen/4634cd5b-d78d-4dac-a753-a66328867b8e
+        display: C. Sigmoid polyp cold snare
+    result:
+      - reference: Observation/3e7f5b0a-17ef-427c-82c1-2dea93ada1db
+        display: A. Ascending colon polyp cold snare
+      - reference: Observation/cddde135-b3ac-493c-baac-d7dd9c2cb3d7
+        display: B. Transverse polyp cold biopsy 1
+      - reference: Observation/08aaefbe-b113-4f90-b5d2-08f2fd156a85
+        display: B. Transverse polyp cold biopsy 2
+      - reference: Observation/91f3d52b-ae67-4f59-8747-c5b8dc2edeab
+        display: B. Transverse polyp cold biopsy 3
+      - reference: Observation/e944e3b8-82fb-420e-9e90-528a7857751c
+        display: B. Transverse polyp cold biopsy 4
+      - reference: Observation/557011f3-943d-413a-9c31-81370e7ecdcf
+        display: B. Transverse polyp cold biopsy 5
+      - reference: Observation/1b00505f-8305-4ce8-90b6-9e2c549c3e76
+        display: C. Sigmoid polyp cold snare
+  - resourceType: Specimen
+    id: b659e742-4ce1-49e6-afc7-d87e08271135
+    collection:
+      bodySite: SNOMEDCT#9040008 Ascending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 5 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: A. Ascending colon polyp cold snare
+  - resourceType: Observation
+    id: 3e7f5b0a-17ef-427c-82c1-2dea93ada1db
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/b659e742-4ce1-49e6-afc7-d87e08271135
+      display: A. Ascending colon polyp cold snare
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: affb3b47-0e25-4df9-b250-b46e53e99427
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse polyp cold biopsy 1
+  - resourceType: Observation
+    id: cddde135-b3ac-493c-baac-d7dd9c2cb3d7
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/affb3b47-0e25-4df9-b250-b46e53e99427
+      display: B. Transverse polyp cold biopsy 1
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: b37ed537-398b-45b1-a605-53a8e7119834
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse polyp cold biopsy 2
+  - resourceType: Observation
+    id: 08aaefbe-b113-4f90-b5d2-08f2fd156a85
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/b37ed537-398b-45b1-a605-53a8e7119834
+      display: B. Transverse polyp cold biopsy 2
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 981bc3c8-c3c9-43bb-9b40-4c90aad18806
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse polyp cold biopsy 3
+  - resourceType: Observation
+    id: 91f3d52b-ae67-4f59-8747-c5b8dc2edeab
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/981bc3c8-c3c9-43bb-9b40-4c90aad18806
+      display: B. Transverse polyp cold biopsy 3
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 3d8984db-b1eb-4776-879d-369c1870e9df
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse polyp cold biopsy 4
+  - resourceType: Observation
+    id: e944e3b8-82fb-420e-9e90-528a7857751c
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/3d8984db-b1eb-4776-879d-369c1870e9df
+      display: B. Transverse polyp cold biopsy 4
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: b06d92ae-86b3-4415-85aa-a7c380cdf5d8
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: B. Transverse polyp cold biopsy 5
+  - resourceType: Observation
+    id: 557011f3-943d-413a-9c31-81370e7ecdcf
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/b06d92ae-86b3-4415-85aa-a7c380cdf5d8
+      display: B. Transverse polyp cold biopsy 5
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 4634cd5b-d78d-4dac-a753-a66328867b8e
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 5 mm
+      collectedDateTime: 2020-07-24T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: C. Sigmoid polyp cold snare
+  - resourceType: Observation
+    id: 1b00505f-8305-4ce8-90b6-9e2c549c3e76
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/4634cd5b-d78d-4dac-a753-a66328867b8e
+      display: C. Sigmoid polyp cold snare
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Procedure
+    id: 0c47cec4-e631-4f0d-98f7-afd4d7b59b2a
+    code: SNOMEDCT#25732003 Fiberoptic colonoscopy with biopsy (procedure)
+    performedDateTime: 2021-10-04T00:00:00.000Z
+  - resourceType: Procedure
+    code: SNOMEDCT#311774002 Colonoscopic polypectomy (procedure)
+    performedDateTime: 2021-10-04T00:00:00.000Z
+    partOf:
+      - reference: Procedure/0c47cec4-e631-4f0d-98f7-afd4d7b59b2a
+        display: Colonoscopy
+    report:
+      - reference: DiagnosticReport/26298d3d-da8f-486c-8733-e5e83ddc92dd
+        display: Surgical Pathology
+  - resourceType: DiagnosticReport
+    id: 26298d3d-da8f-486c-8733-e5e83ddc92dd
+    category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
+    code: LOINC#11529-5 Surgical pathology study
+    effectiveDateTime: 2021-10-04T00:00:00.000Z
+    issued: 2021-10-05T00:00:00.000Z
+    specimen:
+      - reference: Specimen/34a46b61-14a8-4f0d-925b-df4b7c95e701
+        display: 'A. COLD BIOPSY: CECAL POLYP'
+      - reference: Specimen/5690aa6b-28f8-4034-a7f5-9f9bbf07ee3e
+        display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+      - reference: Specimen/85339986-a52b-42b4-a499-b4e9bca6dfae
+        display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+      - reference: Specimen/471fb7a2-9e09-4d68-9574-529bb7cf52db
+        display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+      - reference: Specimen/ac97553a-71ae-4a16-9d05-8eae51e70ead
+        display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+      - reference: Specimen/40951cd9-07bc-4c4b-af70-30e91af13bc0
+        display: D. COLD SNARE X 1
+      - reference: Specimen/6e846491-eef5-47c8-bba2-a42d29e0285c
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+      - reference: Specimen/cea822ed-8a2c-4738-abc2-781c80b65fea
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+      - reference: Specimen/61ab6aa7-fe38-48ef-aa68-abab9c289506
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+      - reference: Specimen/be174fc7-dc1e-45a6-8e1e-36308877bc93
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+      - reference: Specimen/e2b07abb-25f1-4ec2-a7c5-8d0da1755cf4
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+      - reference: Specimen/4497a8d3-5706-4cd5-9330-61d7f0970e26
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+      - reference: Specimen/db3f0f9b-2a12-4c80-a5fd-973e28734a7c
+        display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+      - reference: Specimen/b830048c-e1a5-4b3a-8318-4cd5daaa941e
+        display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+    result:
+      - reference: Observation/9b299eb8-1369-4494-b2bd-5fcf7bdc5d74
+        display: 'A. COLD BIOPSY: CECAL POLYP'
+      - reference: Observation/d1cebb0e-b1f8-4e00-a2d5-70e1658fbb48
+        display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+      - reference: Observation/e55e8901-f796-441a-a7cf-b26792aac2a6
+        display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+      - reference: Observation/a6232ed4-ab65-40b4-892a-b5cb80ddae0a
+        display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+      - reference: Observation/1770ea2d-a451-46d1-b1a8-02008e5ad4f5
+        display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+      - reference: Observation/e80f8493-2a0e-4783-a591-3cf5a542ef38
+        display: D. COLD SNARE X 1
+      - reference: Observation/194e103e-74e1-46be-9518-7d5624c9344b
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+      - reference: Observation/808f6dfe-a9c3-48c2-95ac-4f117aadac5f
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+      - reference: Observation/569fb633-be5e-4e09-a815-c243900e5daf
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+      - reference: Observation/54176245-b883-4aeb-8950-89d9aa9be56b
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+      - reference: Observation/1f67fedc-a0a4-4e6a-b6c4-25daa7967102
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+      - reference: Observation/c862018a-f1c0-4bb1-933c-f157fb390120
+        display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+      - reference: Observation/802be1a2-1e4f-4635-8929-602e19747925
+        display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+      - reference: Observation/88733ff4-5a6c-4af1-ae49-eec3794b01c3
+        display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+  - resourceType: Specimen
+    id: 34a46b61-14a8-4f0d-925b-df4b7c95e701
+    collection:
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 3 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'A. COLD BIOPSY: CECAL POLYP'
+  - resourceType: Observation
+    id: 9b299eb8-1369-4494-b2bd-5fcf7bdc5d74
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/34a46b61-14a8-4f0d-925b-df4b7c95e701
+      display: 'A. COLD BIOPSY: CECAL POLYP'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 5690aa6b-28f8-4034-a7f5-9f9bbf07ee3e
+    collection:
+      bodySite: SNOMEDCT#9040008 Ascending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+  - resourceType: Observation
+    id: d1cebb0e-b1f8-4e00-a2d5-70e1658fbb48
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/5690aa6b-28f8-4034-a7f5-9f9bbf07ee3e
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 85339986-a52b-42b4-a499-b4e9bca6dfae
+    collection:
+      bodySite: SNOMEDCT#9040008 Ascending colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+  - resourceType: Observation
+    id: e55e8901-f796-441a-a7cf-b26792aac2a6
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/85339986-a52b-42b4-a499-b4e9bca6dfae
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 471fb7a2-9e09-4d68-9574-529bb7cf52db
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+  - resourceType: Observation
+    id: a6232ed4-ab65-40b4-892a-b5cb80ddae0a
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/471fb7a2-9e09-4d68-9574-529bb7cf52db
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: ac97553a-71ae-4a16-9d05-8eae51e70ead
+    collection:
+      bodySite: SNOMEDCT#485005 Transverse colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 8 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+  - resourceType: Observation
+    id: 1770ea2d-a451-46d1-b1a8-02008e5ad4f5
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/ac97553a-71ae-4a16-9d05-8eae51e70ead
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 40951cd9-07bc-4c4b-af70-30e91af13bc0
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 6 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: D. COLD SNARE X 1
+  - resourceType: Observation
+    id: e80f8493-2a0e-4783-a591-3cf5a542ef38
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/40951cd9-07bc-4c4b-af70-30e91af13bc0
+      display: D. COLD SNARE X 1
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 6e846491-eef5-47c8-bba2-a42d29e0285c
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+  - resourceType: Observation
+    id: 194e103e-74e1-46be-9518-7d5624c9344b
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/6e846491-eef5-47c8-bba2-a42d29e0285c
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: cea822ed-8a2c-4738-abc2-781c80b65fea
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+  - resourceType: Observation
+    id: 808f6dfe-a9c3-48c2-95ac-4f117aadac5f
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/cea822ed-8a2c-4738-abc2-781c80b65fea
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 61ab6aa7-fe38-48ef-aa68-abab9c289506
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+  - resourceType: Observation
+    id: 569fb633-be5e-4e09-a815-c243900e5daf
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/61ab6aa7-fe38-48ef-aa68-abab9c289506
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: be174fc7-dc1e-45a6-8e1e-36308877bc93
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+  - resourceType: Observation
+    id: 54176245-b883-4aeb-8950-89d9aa9be56b
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/be174fc7-dc1e-45a6-8e1e-36308877bc93
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: e2b07abb-25f1-4ec2-a7c5-8d0da1755cf4
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+  - resourceType: Observation
+    id: 1f67fedc-a0a4-4e6a-b6c4-25daa7967102
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/e2b07abb-25f1-4ec2-a7c5-8d0da1755cf4
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: 4497a8d3-5706-4cd5-9330-61d7f0970e26
+    collection:
+      bodySite: SNOMEDCT#60184004 Sigmoid colon structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+  - resourceType: Observation
+    id: c862018a-f1c0-4bb1-933c-f157fb390120
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/4497a8d3-5706-4cd5-9330-61d7f0970e26
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+    hasMember:
+      - reference: Observation/93b40608-5c08-4917-b396-7a660df76587
+        display: Hyperplastic Polyp
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: db3f0f9b-2a12-4c80-a5fd-973e28734a7c
+    collection:
+      bodySite: SNOMEDCT#34402009 Rectum structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'E. COLD BIOPSY: RECTAL POLYP 1'
+  - resourceType: Observation
+    id: 802be1a2-1e4f-4635-8929-602e19747925
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/db3f0f9b-2a12-4c80-a5fd-973e28734a7c
+      display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+    hasMember:
+      - reference: Observation/f018a8d3-2c33-4ffc-b7cd-6ce4fc8624b7
+        display: Tubular adenoma of colon
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: b830048c-e1a5-4b3a-8318-4cd5daaa941e
+    collection:
+      bodySite: SNOMEDCT#34402009 Rectum structure (body structure)
+      method: SNOMEDCT#129304002 Excision - action
+      quantity: 4 mm
+      collectedDateTime: 2021-10-04T00:00:00.000Z
+    type: http://terminology.hl7.org/CodeSystem/v2-0487#POL Polyps
+    note:
+      text: 'E. COLD BIOPSY: RECTAL POLYP 2'
+  - resourceType: Observation
+    id: 88733ff4-5a6c-4af1-ae49-eec3794b01c3
+    code: >-
+      SNOMEDCT#404684003 Polyp from large intestine obtained by polypectomy
+      (specimen)
+    specimen:
+      reference: Specimen/b830048c-e1a5-4b3a-8318-4cd5daaa941e
+      display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+    hasMember:
+      - reference: Observation/93b40608-5c08-4917-b396-7a660df76587
+        display: Hyperplastic Polyp
+      - reference: Observation/a3831e2a-ec9b-4aa5-ae5e-e83e866d41a4
+        display: Piecemeal excision false
+      - reference: Observation/abcb49db-960b-4de6-aa0a-2e072c438dd4
+        display: Severe dysplasia false
+      - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
+        display: No evidence of malignant neoplasm true
+result:
+  null
