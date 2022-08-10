@@ -1,4 +1,4 @@
-name: some-guy
+name: Some-Guy
 data:
   - resourceType: Patient
     meta:
@@ -26,7 +26,7 @@ data:
     code: ICD-10-CM#Z86.010 Personal history of colonic polyps
     onsetDateTime: 2011-07-12
   - resourceType: Observation
-    category: http://terminology.hl7.org/CodeSystem/observation-category##laboratory Laboratory
+    category: http://terminology.hl7.org/CodeSystem/observation-category#laboratory Laboratory
     code: LOINC#2085-9 Cholesterol in HDL [Mass/volume] in Serum or Plasma
     effectiveDateTime: 2017-11-20
     valueQuantity: 62 mg/dL
@@ -1498,5 +1498,5 @@ data:
         display: Severe dysplasia false
       - reference: Observation/71f00532-66d9-4634-aa0e-bff0aafaf9a1
         display: No evidence of malignant neoplasm true
-result:
+results: 
   null
