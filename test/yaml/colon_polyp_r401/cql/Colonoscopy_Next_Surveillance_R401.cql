@@ -256,3 +256,10 @@ define Is18orOlder:
 //     null
 
 // RISK CONSIDERATIONS
+
+// find the Diagnostic Reports
+
+define DianosticReports:
+  [DiagnosticReport]
+
+
