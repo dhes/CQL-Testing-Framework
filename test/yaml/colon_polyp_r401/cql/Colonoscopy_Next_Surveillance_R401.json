@@ -220,7 +220,7 @@
          }, {
             "name" : "Laboratory",
             "id" : "laboratory",
-            "display" : "ProLaboratorycedure",
+            "display" : "Laboratory",
             "accessLevel" : "Public",
             "codeSystem" : {
                "name" : "OBSCAT"
@@ -256,6 +256,22 @@
             "accessLevel" : "Public",
             "codeSystem" : {
                "name" : "ombCategory"
+            }
+         }, {
+            "name" : "Pathology report final diagnosis",
+            "id" : "34574-4",
+            "display" : "Pathology report final diagnosis",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "LOINC"
+            }
+         }, {
+            "name" : "Surgical pathology study",
+            "id" : "11529-5",
+            "display" : "Surgical pathology study",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "LOINC"
             }
          } ]
       },
@@ -1111,6 +1127,24 @@
                   "value" : "18",
                   "type" : "Literal"
                } ]
+            }
+         }, {
+            "name" : "DiagnosticReports",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "dataType" : "{http://hl7.org/fhir}DiagnosticReport",
+               "templateId" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+               "codeProperty" : "code",
+               "codeComparator" : "~",
+               "type" : "Retrieve",
+               "codes" : {
+                  "type" : "ToList",
+                  "operand" : {
+                     "name" : "Surgical pathology study",
+                     "type" : "CodeRef"
+                  }
+               }
             }
          } ]
       }

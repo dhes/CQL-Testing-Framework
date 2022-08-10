@@ -75,11 +75,16 @@ code "Sigmoid colon structure (body structure)": '60184004' from "SNOMEDCT" disp
 code "Rectum structure (body structure)": '34402009' from "SNOMEDCT" display 'Rectum structure (body structure)'
 code "Medical Record Number": 'MR' from "v2-0203" display 'Medical Record Number'
 code "Procedure": 'procedure' from "OBSCAT" display 'Procedure'
-code "Laboratory": 'laboratory' from "OBSCAT" display 'ProLaboratorycedure'
+code "Laboratory": 'laboratory' from "OBSCAT" display 'Laboratory'
 code "brother": 'BRO' from "V3-ROLE-CODE" display 'brother'
 code "Surgical Pathology": 'SP' from "v2-0074" display 'Surgical Pathology'
 code "Polyps": 'POL' from "v2-0487" display 'Polyps'
 code "White": '2106-3' from "ombCategory" display 'White'
+// LOINC#34574-4 Pathology report final diagnosis
+code "Pathology report final diagnosis": '34574-4' from "LOINC" display 'Pathology report final diagnosis'
+// LOINC#11529-5 Surgical pathology study
+code "Surgical pathology study": '11529-5' from "LOINC" display 'Surgical pathology study'
+
 
 // CQL currently requires concept declarations to contain references to code declarations.
 
@@ -259,7 +264,7 @@ define Is18orOlder:
 
 // find the Diagnostic Reports
 
-define DianosticReports:
-  [DiagnosticReport]
+define DiagnosticReports:
+  [DiagnosticReport: "Surgical pathology study"]
 
 
