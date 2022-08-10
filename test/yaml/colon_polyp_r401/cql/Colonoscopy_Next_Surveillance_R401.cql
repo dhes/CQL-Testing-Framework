@@ -66,7 +66,7 @@ code "Piecemeal excision": '787139004' from "SNOMEDCT" display 'Piecemeal excisi
 code "Fiberoptic colonoscopy with biopsy (procedure)": '25732003' from "SNOMEDCT" display  'Fiberoptic colonoscopy with biopsy (procedure)'
 code "Colonoscopic polypectomy (procedure)": '311774002' from "SNOMEDCT" display 'Colonoscopic polypectomy (procedure)'
 code "Excision - action": '129304002' from "SNOMEDCT" display 'Excision - action'
-code "Polyp from large intestine obtained by polypectomy (specimen)": '404684003' from "SNOMEDCT" display 'Polyp from large intestine obtained by polypectomy (specimen)'
+code "Large Intestine Polyp": '122645001' from "SNOMEDCT" display 'Polyp from large intestine obtained by polypectomy (specimen)'
 code "Cecum structure (body structure)": '32713005' from "SNOMEDCT" display 'Cecum structure (body structure)'
 code "Ascending colon structure (body structure)": '9040008' from "SNOMEDCT" display 'Ascending colon structure (body structure)'
 code "Transverse colon structure (body structure)": '485005' from "SNOMEDCT" display 'Transverse colon structure (body structure)'
@@ -264,7 +264,24 @@ define Is18orOlder:
 
 // find the Diagnostic Reports
 
-define DiagnosticReports:
+define SurgicalPathologyReport:
   [DiagnosticReport: "Surgical pathology study"]
 
+define SurgicalPathologyPolypReport:
+  [DiagnosticReport: "Large Intestine Polyp"]
 
+define TotalLifetimePolyps: 
+  Count(SurgicalPathologyPolypReport.specimen)
+
+/**
+ * The most recent diagnostic report.  For each  diagnostic report, this algorithm will use the Coalesce function, which returns the
+ * first non-null result from these fields: performedDateTime, performedPeriod.end, performedPeriod.start.
+ * The found date will be used to compare  diagnostic report and determine the most recent one.
+ * @param DxReporList - a list of Procedures
+ * @returns {DiagnosticReport} the most recent diagnostic report from the list, or null if null was passed in
+ */
+define MostRecentDiagnosticReport:
+  Last(SurgicalPathologyPolypReport PR sort by issued)
+
+define MostRecentPolypCount:
+  Count(MostRecentDiagnosticReport.specimen)

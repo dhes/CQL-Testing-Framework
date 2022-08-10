@@ -253,7 +253,8 @@ data:
   - resourceType: DiagnosticReport
     id: 8de9dee7-2e18-4cb3-ae4e-3652329a62de
     category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
-    code: LOINC#11529-5 Surgical pathology study
+    # code: LOINC#11529-5 Surgical pathology study
+    code: SNOMEDCT#122645001 Polyp from large intestine obtained by polypectomy (specimen)
     effectiveDateTime: 2011-07-12T00:00:00.000Z
     issued: 2011-07-13T00:00:00.000Z
     specimen:
@@ -460,7 +461,8 @@ data:
   - resourceType: DiagnosticReport
     id: 31255dbc-5a4c-466b-8f1f-c334fe5ba76f
     category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
-    code: LOINC#11529-5 Surgical pathology study
+    # code: LOINC#11529-5 Surgical pathology study
+    code: SNOMEDCT#122645001 Polyp from large intestine obtained by polypectomy (specimen)
     effectiveDateTime: 2019-07-22T00:00:00.000Z
     issued: 2019-07-23T00:00:00.000Z
     specimen:
@@ -822,7 +824,8 @@ data:
   - resourceType: DiagnosticReport
     id: f7526f49-f492-45e3-88c7-ec7d3a21d204
     category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
-    code: LOINC#11529-5 Surgical pathology study
+    # code: LOINC#11529-5 Surgical pathology study
+    code: SNOMEDCT#122645001 Polyp from large intestine obtained by polypectomy (specimen)
     effectiveDateTime: 2020-07-24T00:00:00.000Z
     issued: 2020-07-25T00:00:00.000Z
     specimen:
@@ -1060,7 +1063,8 @@ data:
   - resourceType: DiagnosticReport
     id: 26298d3d-da8f-486c-8733-e5e83ddc92dd
     category: http://terminology.hl7.org/CodeSystem/v2-0074#SP Surgical Pathology
-    code: LOINC#11529-5 Surgical pathology study
+    # code: LOINC#11529-5 Surgical pathology study
+    code: SNOMEDCT#122645001 Polyp from large intestine obtained by polypectomy (specimen)
     effectiveDateTime: 2021-10-04T00:00:00.000Z
     issued: 2021-10-05T00:00:00.000Z
     specimen:

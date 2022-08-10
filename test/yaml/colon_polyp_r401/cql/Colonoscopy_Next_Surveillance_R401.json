@@ -146,8 +146,8 @@
                "name" : "SNOMEDCT"
             }
          }, {
-            "name" : "Polyp from large intestine obtained by polypectomy (specimen)",
-            "id" : "404684003",
+            "name" : "Large Intestine Polyp",
+            "id" : "122645001",
             "display" : "Polyp from large intestine obtained by polypectomy (specimen)",
             "accessLevel" : "Public",
             "codeSystem" : {
@@ -1129,7 +1129,7 @@
                } ]
             }
          }, {
-            "name" : "DiagnosticReports",
+            "name" : "SurgicalPathologyReport",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -1143,6 +1143,109 @@
                   "operand" : {
                      "name" : "Surgical pathology study",
                      "type" : "CodeRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "SurgicalPathologyPolypReport",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "dataType" : "{http://hl7.org/fhir}DiagnosticReport",
+               "templateId" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+               "codeProperty" : "code",
+               "codeComparator" : "~",
+               "type" : "Retrieve",
+               "codes" : {
+                  "type" : "ToList",
+                  "operand" : {
+                     "name" : "Large Intestine Polyp",
+                     "type" : "CodeRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "TotalLifetimePolyps",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "type" : "Flatten",
+                  "operand" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "$this",
+                        "expression" : {
+                           "name" : "SurgicalPathologyPolypReport",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "where" : {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "path" : "specimen",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "$this",
+                                 "type" : "AliasRef"
+                              }
+                           }
+                        }
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "path" : "specimen",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "$this",
+                              "type" : "AliasRef"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "MostRecentDiagnosticReport",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Last",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "PR",
+                     "expression" : {
+                        "name" : "SurgicalPathologyPolypReport",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "sort" : {
+                     "by" : [ {
+                        "direction" : "asc",
+                        "path" : "issued",
+                        "type" : "ByColumn"
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "MostRecentPolypCount",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "path" : "specimen",
+                  "type" : "Property",
+                  "source" : {
+                     "name" : "MostRecentDiagnosticReport",
+                     "type" : "ExpressionRef"
                   }
                }
             }
