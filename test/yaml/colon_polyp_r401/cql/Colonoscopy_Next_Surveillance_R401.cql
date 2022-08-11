@@ -285,3 +285,25 @@ define MostRecentDiagnosticReport:
 
 define MostRecentPolypCount:
   Count(MostRecentDiagnosticReport.specimen)
+
+define PolypHistopath:
+  MostRecentDiagnosticReport.result[0]
+
+// define FinalDiagnosis:
+//   [Observation: "Pathology report final diagnosis"] O
+//     with [Observation: "Large Intestine Polyp"] P
+//       such that O.id in P.hasMember // no no no
+
+// define ObservationMembers:
+//   [Observation] O
+//   return all O.hasMember
+
+// define ReferencedProcedure:
+//   [Procedure] P
+//     with [Procedure: "Fiberoptic colonoscopy with biopsy (procedure)"] Q
+//       such that P.status = Q.status
+
+define ReferencedDiagnosticReport:
+  [DiagnosticReport] DR
+    with [Procedure] Q
+      such that DR.effective as FHIR.dateTime = Q.performed as FHIR.dateTime
