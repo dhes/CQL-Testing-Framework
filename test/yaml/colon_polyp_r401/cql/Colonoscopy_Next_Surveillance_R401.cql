@@ -340,3 +340,12 @@ define SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport:
   [Specimen] S
   with SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport SL
   such that ('Specimen/' + S.id) in SL
+
+define ResultListFromMostRecentColonoscopyPolypDiagnosticReport:
+  MostRecentColonoscopyPolpyDiagnosticReport DR
+  return DR.result.reference.value
+ 
+define ResultFromMostRecentColonoscopyPolypDiagnosticReport:
+  [Observation: "Large Intestine Polyp"] O
+  with ResultListFromMostRecentColonoscopyPolypDiagnosticReport RL
+  such that ('Observation/' + O.id) in RL
