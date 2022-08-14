@@ -1588,7 +1588,7 @@
                } ]
             }
          }, {
-            "name" : "MostRecentColonoscopyPolpyDiagnosticReport",
+            "name" : "MostRecentColonoscopyPolypDiagnosticReport",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -1617,7 +1617,7 @@
                "source" : [ {
                   "alias" : "DR",
                   "expression" : {
-                     "name" : "MostRecentColonoscopyPolpyDiagnosticReport",
+                     "name" : "MostRecentColonoscopyPolypDiagnosticReport",
                      "type" : "ExpressionRef"
                   }
                } ],
@@ -1693,7 +1693,7 @@
                }
             }
          }, {
-            "name" : "SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport",
+            "name" : "SpecimensFromMostRecentColonoscopyPolypDiagnosticReport",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {

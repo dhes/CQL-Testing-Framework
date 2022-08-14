@@ -329,14 +329,14 @@ define SpecimenFromACertainDatedReport:
   with ReferencedDiagnosticReport1 R
   such that ('Specimen/' + S.id) in R
 
-define MostRecentColonoscopyPolpyDiagnosticReport:
+define MostRecentColonoscopyPolypDiagnosticReport:
   Last([DiagnosticReport: "Large Intestine Polyp"])
 
 define SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport:
-  MostRecentColonoscopyPolpyDiagnosticReport DR
+  MostRecentColonoscopyPolypDiagnosticReport DR
   return DR.specimen.reference.value
  
-define SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport:
+define SpecimensFromMostRecentColonoscopyPolypDiagnosticReport:
   [Specimen] S
   with SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport SL
   such that ('Specimen/' + S.id) in SL
