@@ -1587,6 +1587,27 @@
                   }
                } ]
             }
+         }, {
+            "name" : "MostRecentColonoscopyPolpyDiagnosticReport",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Last",
+               "source" : {
+                  "dataType" : "{http://hl7.org/fhir}DiagnosticReport",
+                  "templateId" : "http://hl7.org/fhir/StructureDefinition/DiagnosticReport",
+                  "codeProperty" : "code",
+                  "codeComparator" : "~",
+                  "type" : "Retrieve",
+                  "codes" : {
+                     "type" : "ToList",
+                     "operand" : {
+                        "name" : "Large Intestine Polyp",
+                        "type" : "CodeRef"
+                     }
+                  }
+               }
+            }
          } ]
       }
    }

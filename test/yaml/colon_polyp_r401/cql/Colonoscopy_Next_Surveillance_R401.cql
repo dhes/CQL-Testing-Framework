@@ -328,3 +328,6 @@ define SpecimenFromThisReport:
   [Specimen] S
   with ReferencedDiagnosticReport1 R
   such that ('Specimen/' + S.id) in R
+
+define MostRecentColonoscopyPolpyDiagnosticReport:
+  Last([DiagnosticReport: "Large Intestine Polyp"]) 
