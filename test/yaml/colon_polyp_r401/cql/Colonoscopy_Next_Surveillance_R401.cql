@@ -303,7 +303,28 @@ define PolypHistopath:
 //     with [Procedure: "Fiberoptic colonoscopy with biopsy (procedure)"] Q
 //       such that P.status = Q.status
 
+// define ReferencedDiagnosticReport:
+//   [DiagnosticReport] DR
+//     with [Specimen] S
+//       such that SubString( PositionOf('/', DR.specimen[0].reference ), DR.specimen[0].reference )  = S.id
+
+// this exposes the id of the first specimen in a DiagnosticReport of a given date
 define ReferencedDiagnosticReport:
-  [DiagnosticReport] DR
-    with [Procedure] Q
-      such that DR.effective as FHIR.dateTime = Q.performed as FHIR.dateTime
+  singleton from ( [DiagnosticReport] DR
+    where DR.effective as dateTime = @2019-07-22T00:00:00.000Z
+    return Split( DR.specimen[0].reference.value ,'/' )[1] )
+
+// same without singleton and no splitting
+define ReferencedDiagnosticReport1:
+  First( [DiagnosticReport] DR
+    where DR.effective as dateTime = @2019-07-22T00:00:00.000Z
+    return DR.specimen.reference.value)
+
+// define ParsedReferencedDiagnosticReport1:
+//   Split( ReferencedDiagnosticReport1,'/' )[1]
+
+// at least selects the right number of specimens and maybe the right ones
+define SpecimenFromThisReport:
+  [Specimen] S
+  with ReferencedDiagnosticReport1 R
+  such that ('Specimen/' + S.id) in R
