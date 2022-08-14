@@ -324,10 +324,19 @@ define ReferencedDiagnosticReport1:
 //   Split( ReferencedDiagnosticReport1,'/' )[1]
 
 // at least selects the right number of specimens and maybe the right ones
-define SpecimenFromThisReport:
+define SpecimenFromACertainDatedReport:
   [Specimen] S
   with ReferencedDiagnosticReport1 R
   such that ('Specimen/' + S.id) in R
 
 define MostRecentColonoscopyPolpyDiagnosticReport:
-  Last([DiagnosticReport: "Large Intestine Polyp"]) 
+  Last([DiagnosticReport: "Large Intestine Polyp"])
+
+define SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport:
+  MostRecentColonoscopyPolpyDiagnosticReport DR
+  return DR.specimen.reference.value
+ 
+define SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport:
+  [Specimen] S
+  with SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport SL
+  such that ('Specimen/' + S.id) in SL

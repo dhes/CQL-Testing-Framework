@@ -1539,7 +1539,7 @@
                }
             }
          }, {
-            "name" : "SpecimenFromThisReport",
+            "name" : "SpecimenFromACertainDatedReport",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -1607,6 +1607,139 @@
                      }
                   }
                }
+            }
+         }, {
+            "name" : "SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "DR",
+                  "expression" : {
+                     "name" : "MostRecentColonoscopyPolpyDiagnosticReport",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "return" : {
+                  "expression" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "$this",
+                        "expression" : {
+                           "type" : "Query",
+                           "source" : [ {
+                              "alias" : "$this",
+                              "expression" : {
+                                 "path" : "specimen",
+                                 "scope" : "DR",
+                                 "type" : "Property"
+                              }
+                           } ],
+                           "where" : {
+                              "type" : "Not",
+                              "operand" : {
+                                 "type" : "IsNull",
+                                 "operand" : {
+                                    "path" : "reference",
+                                    "type" : "Property",
+                                    "source" : {
+                                       "name" : "$this",
+                                       "type" : "AliasRef"
+                                    }
+                                 }
+                              }
+                           },
+                           "return" : {
+                              "distinct" : false,
+                              "expression" : {
+                                 "path" : "reference",
+                                 "type" : "Property",
+                                 "source" : {
+                                    "name" : "$this",
+                                    "type" : "AliasRef"
+                                 }
+                              }
+                           }
+                        }
+                     } ],
+                     "where" : {
+                        "type" : "Not",
+                        "operand" : {
+                           "type" : "IsNull",
+                           "operand" : {
+                              "path" : "value",
+                              "type" : "Property",
+                              "source" : {
+                                 "name" : "$this",
+                                 "type" : "AliasRef"
+                              }
+                           }
+                        }
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "path" : "value",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "$this",
+                              "type" : "AliasRef"
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "S",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Specimen",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Specimen",
+                     "type" : "Retrieve"
+                  }
+               } ],
+               "relationship" : [ {
+                  "alias" : "SL",
+                  "type" : "With",
+                  "expression" : {
+                     "name" : "SpecimenListFromMostRecentColonoscopyPolypDiagnosticReport",
+                     "type" : "ExpressionRef"
+                  },
+                  "suchThat" : {
+                     "type" : "In",
+                     "operand" : [ {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "Specimen/",
+                           "type" : "Literal"
+                        }, {
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "id",
+                              "scope" : "S",
+                              "type" : "Property"
+                           } ]
+                        } ]
+                     }, {
+                        "type" : "ToList",
+                        "operand" : {
+                           "name" : "SL",
+                           "type" : "AliasRef"
+                        }
+                     } ]
+                  }
+               } ]
             }
          } ]
       }
