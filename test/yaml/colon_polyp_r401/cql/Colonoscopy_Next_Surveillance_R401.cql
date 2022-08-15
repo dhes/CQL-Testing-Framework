@@ -354,4 +354,9 @@ define ResultFromMostRecentColonoscopyPolypDiagnosticReport:
 define X:
   from SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport S, ResultFromMostRecentColonoscopyPolypDiagnosticReport R
   where ( 'Specimen/' + S.id ) = R.specimen.reference
-  return Tuple {specimenId: S.id, resultId: R.id, resultMembers: R.hasMember}
+  return Tuple {
+    specimenId: S.id, 
+    resultId: R.id, 
+    polypSize: S.collection.quantity,
+    resultMembers: R.hasMember
+  }

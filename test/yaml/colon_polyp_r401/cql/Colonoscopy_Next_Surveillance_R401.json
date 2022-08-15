@@ -1954,13 +1954,13 @@
                            "type" : "Property"
                         }
                      }, {
-                        "name" : "resultSpecimenReference",
+                        "name" : "polypSize",
                         "value" : {
-                           "path" : "reference",
+                           "path" : "quantity",
                            "type" : "Property",
                            "source" : {
-                              "path" : "specimen",
-                              "scope" : "R",
+                              "path" : "collection",
+                              "scope" : "S",
                               "type" : "Property"
                            }
                         }
