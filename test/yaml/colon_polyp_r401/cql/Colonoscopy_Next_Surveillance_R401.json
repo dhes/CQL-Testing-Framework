@@ -1883,6 +1883,98 @@
                   }
                } ]
             }
+         }, {
+            "name" : "X",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "S",
+                  "expression" : {
+                     "name" : "SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport",
+                     "type" : "ExpressionRef"
+                  }
+               }, {
+                  "alias" : "R",
+                  "expression" : {
+                     "name" : "ResultFromMostRecentColonoscopyPolypDiagnosticReport",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equal",
+                  "operand" : [ {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "Specimen/",
+                        "type" : "Literal"
+                     }, {
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "id",
+                           "scope" : "S",
+                           "type" : "Property"
+                        } ]
+                     } ]
+                  }, {
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "reference",
+                        "type" : "Property",
+                        "source" : {
+                           "path" : "specimen",
+                           "scope" : "R",
+                           "type" : "Property"
+                        }
+                     } ]
+                  } ]
+               },
+               "return" : {
+                  "expression" : {
+                     "type" : "Tuple",
+                     "element" : [ {
+                        "name" : "specimenId",
+                        "value" : {
+                           "path" : "id",
+                           "scope" : "S",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "name" : "resultId",
+                        "value" : {
+                           "path" : "id",
+                           "scope" : "R",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "name" : "resultSpecimenReference",
+                        "value" : {
+                           "path" : "reference",
+                           "type" : "Property",
+                           "source" : {
+                              "path" : "specimen",
+                              "scope" : "R",
+                              "type" : "Property"
+                           }
+                        }
+                     }, {
+                        "name" : "resultMembers",
+                        "value" : {
+                           "path" : "hasMember",
+                           "scope" : "R",
+                           "type" : "Property"
+                        }
+                     } ]
+                  }
+               }
+            }
          } ]
       }
    }
