@@ -61,7 +61,7 @@ code "Tubular adenoma (disorder)": '444408007' from "SNOMEDCT" display 'Tubular 
 code "Hyperplastic polyp of intestine (disorder)": '89452002' from "SNOMEDCT" display 'Hyperplastic polyp of intestine (disorder)'
 code "Intestinal mucous membrane structure (body structure)": '68534000' from "SNOMEDCT" display 'Intestinal mucous membrane structure (body structure)'
 code "Severe dysplasia": '55237006' from "SNOMEDCT" display 'Severe dysplasia (morphologic abnormality)'
-code "No evidence of malignant neoplasm (finding)": '110396000' from "SNOMEDCT" display 'No evidence of malignant neoplasm (finding)'
+code "No evidence of malignant neoplasm": '110396000' from "SNOMEDCT" display 'No evidence of malignant neoplasm (finding)'
 code "Piecemeal excision": '787139004' from "SNOMEDCT" display 'Piecemeal excision'
 code "Fiberoptic colonoscopy with biopsy (procedure)": '25732003' from "SNOMEDCT" display  'Fiberoptic colonoscopy with biopsy (procedure)'
 code "Colonoscopic polypectomy (procedure)": '311774002' from "SNOMEDCT" display 'Colonoscopic polypectomy (procedure)'
@@ -389,12 +389,18 @@ define Y:
 // expand Y
 define Yexpanded:
   from [ Observation: "Pathology report final diagnosis" ] FD, 
+       [ Observation: "Piecemeal excision" ] PE, 
        [ Observation: "Severe dysplasia" ] SD, 
+       [ Observation: "No evidence of malignant neoplasm" ] NMN, 
        X X
   where ( 'Observation/' + FD.id ) = X.resultMembers[0].reference and
-        ( 'Observation/' + SD.id ) = X.resultMembers[1].reference
+        ( 'Observation/' + PE.id ) = X.resultMembers[1].reference and
+        ( 'Observation/' + SD.id ) = X.resultMembers[2].reference and
+        ( 'Observation/' + NMN.id ) = X.resultMembers[3].reference 
   return all Tuple { 
     polypSize: X.polypSize,
-    finalPathology: FD.value, 
-    severeDysplasia: SD.value
+    finalPathology: FD.value,
+    piecemealExcision: PE.value,
+    severeDysplasia: SD.value,
+    noEvidenceOfMalignantNeoplasm: NMN.value
   }
