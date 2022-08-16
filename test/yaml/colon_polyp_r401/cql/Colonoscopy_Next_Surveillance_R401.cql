@@ -342,17 +342,17 @@ define SpecimensFromMostRecentColonoscopyPolypDiagnosticReport:
   such that ('Specimen/' + S.id) in SL
 
 define ResultListFromMostRecentColonoscopyPolypDiagnosticReport:
-  MostRecentColonoscopyPolpyDiagnosticReport DR
+  MostRecentColonoscopyPolypDiagnosticReport DR
   return DR.result.reference.value
  
-define ResultFromMostRecentColonoscopyPolypDiagnosticReport:
+define ResultsFromMostRecentColonoscopyPolypDiagnosticReport:
   [Observation: "Large Intestine Polyp"] O
   with ResultListFromMostRecentColonoscopyPolypDiagnosticReport RL
   such that ('Observation/' + O.id) in RL
   // return Tuple {oId: O.id, oMember: O.hasMember[0].display}
 
 define X:
-  from SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport S, ResultFromMostRecentColonoscopyPolypDiagnosticReport R
+  from SpecimensFromMostRecentColonoscopyPolypDiagnosticReport S, ResultsFromMostRecentColonoscopyPolypDiagnosticReport R
   where ( 'Specimen/' + S.id ) = R.specimen.reference
   return Tuple {
     specimenId: S.id, 

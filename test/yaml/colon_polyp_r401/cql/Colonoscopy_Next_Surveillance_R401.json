@@ -1750,7 +1750,7 @@
                "source" : [ {
                   "alias" : "DR",
                   "expression" : {
-                     "name" : "MostRecentColonoscopyPolpyDiagnosticReport",
+                     "name" : "MostRecentColonoscopyPolypDiagnosticReport",
                      "type" : "ExpressionRef"
                   }
                } ],
@@ -1826,7 +1826,7 @@
                }
             }
          }, {
-            "name" : "ResultFromMostRecentColonoscopyPolypDiagnosticReport",
+            "name" : "ResultsFromMostRecentColonoscopyPolypDiagnosticReport",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -1892,13 +1892,13 @@
                "source" : [ {
                   "alias" : "S",
                   "expression" : {
-                     "name" : "SpecimensFromMostRecentColonoscopyPolpyDiagnosticReport",
+                     "name" : "SpecimensFromMostRecentColonoscopyPolypDiagnosticReport",
                      "type" : "ExpressionRef"
                   }
                }, {
                   "alias" : "R",
                   "expression" : {
-                     "name" : "ResultFromMostRecentColonoscopyPolypDiagnosticReport",
+                     "name" : "ResultsFromMostRecentColonoscopyPolypDiagnosticReport",
                      "type" : "ExpressionRef"
                   }
                } ],
