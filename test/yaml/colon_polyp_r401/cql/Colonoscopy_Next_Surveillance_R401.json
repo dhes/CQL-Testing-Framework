@@ -1975,6 +1975,183 @@
                   }
                }
             }
+         }, {
+            "name" : "Y",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "O",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Observation",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                     "codeProperty" : "code",
+                     "codeComparator" : "~",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "type" : "ToList",
+                        "operand" : {
+                           "name" : "Pathology report final diagnosis",
+                           "type" : "CodeRef"
+                        }
+                     }
+                  }
+               }, {
+                  "alias" : "X",
+                  "expression" : {
+                     "name" : "X",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equal",
+                  "operand" : [ {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "Observation/",
+                        "type" : "Literal"
+                     }, {
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "id",
+                           "scope" : "O",
+                           "type" : "Property"
+                        } ]
+                     } ]
+                  }, {
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "reference",
+                        "type" : "Property",
+                        "source" : {
+                           "type" : "Indexer",
+                           "operand" : [ {
+                              "path" : "resultMembers",
+                              "scope" : "X",
+                              "type" : "Property"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "0",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  } ]
+               },
+               "return" : {
+                  "distinct" : false,
+                  "expression" : {
+                     "type" : "Tuple",
+                     "element" : [ {
+                        "name" : "finalPathology",
+                        "value" : {
+                           "path" : "value",
+                           "scope" : "O",
+                           "type" : "Property"
+                        }
+                     } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "Yexpanded",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "O",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Observation",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                     "codeProperty" : "code",
+                     "codeComparator" : "~",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "type" : "ToList",
+                        "operand" : {
+                           "name" : "Pathology report final diagnosis",
+                           "type" : "CodeRef"
+                        }
+                     }
+                  }
+               }, {
+                  "alias" : "X",
+                  "expression" : {
+                     "name" : "X",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equal",
+                  "operand" : [ {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "Observation/",
+                        "type" : "Literal"
+                     }, {
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "id",
+                           "scope" : "O",
+                           "type" : "Property"
+                        } ]
+                     } ]
+                  }, {
+                     "name" : "ToString",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "path" : "reference",
+                        "type" : "Property",
+                        "source" : {
+                           "type" : "Indexer",
+                           "operand" : [ {
+                              "path" : "resultMembers",
+                              "scope" : "X",
+                              "type" : "Property"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "0",
+                              "type" : "Literal"
+                           } ]
+                        }
+                     } ]
+                  } ]
+               },
+               "return" : {
+                  "distinct" : false,
+                  "expression" : {
+                     "type" : "Tuple",
+                     "element" : [ {
+                        "name" : "polypSize",
+                        "value" : {
+                           "path" : "polypSize",
+                           "scope" : "X",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "name" : "finalPathology",
+                        "value" : {
+                           "path" : "value",
+                           "scope" : "O",
+                           "type" : "Property"
+                        }
+                     } ]
+                  }
+               }
+            }
          } ]
       }
    }

@@ -360,3 +360,36 @@ define X:
     polypSize: S.collection.quantity,
     resultMembers: R.hasMember
   }
+
+// define Y:
+  // [Observation: "Pathology report final diagnosis"] O
+//   with X X such that ('Observation/' + O.id) = X.resultMembers[0].reference
+
+define Y: 
+  from [Observation: "Pathology report final diagnosis"] O, X X
+  where ('Observation/' + O.id) = X.resultMembers[0].reference
+  return all Tuple { finalPathology: O.value }
+
+// try to combine X and Y
+// define XandY: 
+//     from SpecimensFromMostRecentColonoscopyPolypDiagnosticReport S, 
+//          ResultsFromMostRecentColonoscopyPolypDiagnosticReport R, 
+//         [Observation: "Pathology report final diagnosis"] O, 
+//         X X    
+//     where ( 'Specimen/' + S.id ) = R.specimen.reference and      
+//           ( 'Observation/' + O.id ) = X.resultMembers[0].reference and
+
+//     return all Tuple {
+//       specimenId: S.id, 
+//       resultId: R.id, 
+//       polypSize: S.collection.quantity,
+//       finalPathology: O.value
+//     }
+
+// expand Y
+define Yexpanded:
+  from [Observation: "Pathology report final diagnosis"] O, X X
+  where ('Observation/' + O.id) = X.resultMembers[0].reference
+  return all Tuple { 
+    polypSize: X.polypSize,
+    finalPathology: O.value }
