@@ -98,7 +98,7 @@
                "name" : "SNOMEDCT"
             }
          }, {
-            "name" : "Severe dysplasia (morphologic abnormality)",
+            "name" : "Severe dysplasia",
             "id" : "55237006",
             "display" : "Severe dysplasia (morphologic abnormality)",
             "accessLevel" : "Public",
@@ -2067,7 +2067,7 @@
             "expression" : {
                "type" : "Query",
                "source" : [ {
-                  "alias" : "O",
+                  "alias" : "FD",
                   "expression" : {
                      "dataType" : "{http://hl7.org/fhir}Observation",
                      "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
@@ -2083,6 +2083,22 @@
                      }
                   }
                }, {
+                  "alias" : "SD",
+                  "expression" : {
+                     "dataType" : "{http://hl7.org/fhir}Observation",
+                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
+                     "codeProperty" : "code",
+                     "codeComparator" : "~",
+                     "type" : "Retrieve",
+                     "codes" : {
+                        "type" : "ToList",
+                        "operand" : {
+                           "name" : "Severe dysplasia",
+                           "type" : "CodeRef"
+                        }
+                     }
+                  }
+               }, {
                   "alias" : "X",
                   "expression" : {
                      "name" : "X",
@@ -2091,42 +2107,84 @@
                } ],
                "relationship" : [ ],
                "where" : {
-                  "type" : "Equal",
+                  "type" : "And",
                   "operand" : [ {
-                     "type" : "Concatenate",
+                     "type" : "Equal",
                      "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "Observation/",
-                        "type" : "Literal"
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "Observation/",
+                           "type" : "Literal"
+                        }, {
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "id",
+                              "scope" : "FD",
+                              "type" : "Property"
+                           } ]
+                        } ]
                      }, {
                         "name" : "ToString",
                         "libraryName" : "FHIRHelpers",
                         "type" : "FunctionRef",
                         "operand" : [ {
-                           "path" : "id",
-                           "scope" : "O",
-                           "type" : "Property"
+                           "path" : "reference",
+                           "type" : "Property",
+                           "source" : {
+                              "type" : "Indexer",
+                              "operand" : [ {
+                                 "path" : "resultMembers",
+                                 "scope" : "X",
+                                 "type" : "Property"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "0",
+                                 "type" : "Literal"
+                              } ]
+                           }
                         } ]
                      } ]
                   }, {
-                     "name" : "ToString",
-                     "libraryName" : "FHIRHelpers",
-                     "type" : "FunctionRef",
+                     "type" : "Equal",
                      "operand" : [ {
-                        "path" : "reference",
-                        "type" : "Property",
-                        "source" : {
-                           "type" : "Indexer",
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "Observation/",
+                           "type" : "Literal"
+                        }, {
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
                            "operand" : [ {
-                              "path" : "resultMembers",
-                              "scope" : "X",
+                              "path" : "id",
+                              "scope" : "SD",
                               "type" : "Property"
-                           }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                              "value" : "0",
-                              "type" : "Literal"
                            } ]
-                        }
+                        } ]
+                     }, {
+                        "name" : "ToString",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "path" : "reference",
+                           "type" : "Property",
+                           "source" : {
+                              "type" : "Indexer",
+                              "operand" : [ {
+                                 "path" : "resultMembers",
+                                 "scope" : "X",
+                                 "type" : "Property"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                 "value" : "1",
+                                 "type" : "Literal"
+                              } ]
+                           }
+                        } ]
                      } ]
                   } ]
                },
@@ -2145,7 +2203,14 @@
                         "name" : "finalPathology",
                         "value" : {
                            "path" : "value",
-                           "scope" : "O",
+                           "scope" : "FD",
+                           "type" : "Property"
+                        }
+                     }, {
+                        "name" : "severeDysplasia",
+                        "value" : {
+                           "path" : "value",
+                           "scope" : "SD",
                            "type" : "Property"
                         }
                      } ]

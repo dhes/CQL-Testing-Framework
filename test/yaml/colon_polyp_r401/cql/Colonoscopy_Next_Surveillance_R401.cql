@@ -60,7 +60,7 @@ codesystem "ombCategory": 'urn:oid:2.16.840.1.113883.6.238' // #2106-3 White
 code "Tubular adenoma (disorder)": '444408007' from "SNOMEDCT" display 'Tubular adenoma (disorder)'
 code "Hyperplastic polyp of intestine (disorder)": '89452002' from "SNOMEDCT" display 'Hyperplastic polyp of intestine (disorder)'
 code "Intestinal mucous membrane structure (body structure)": '68534000' from "SNOMEDCT" display 'Intestinal mucous membrane structure (body structure)'
-code "Severe dysplasia (morphologic abnormality)": '55237006' from "SNOMEDCT" display 'Severe dysplasia (morphologic abnormality)'
+code "Severe dysplasia": '55237006' from "SNOMEDCT" display 'Severe dysplasia (morphologic abnormality)'
 code "No evidence of malignant neoplasm (finding)": '110396000' from "SNOMEDCT" display 'No evidence of malignant neoplasm (finding)'
 code "Piecemeal excision": '787139004' from "SNOMEDCT" display 'Piecemeal excision'
 code "Fiberoptic colonoscopy with biopsy (procedure)": '25732003' from "SNOMEDCT" display  'Fiberoptic colonoscopy with biopsy (procedure)'
@@ -388,8 +388,13 @@ define Y:
 
 // expand Y
 define Yexpanded:
-  from [Observation: "Pathology report final diagnosis"] O, X X
-  where ('Observation/' + O.id) = X.resultMembers[0].reference
+  from [ Observation: "Pathology report final diagnosis" ] FD, 
+       [ Observation: "Severe dysplasia" ] SD, 
+       X X
+  where ( 'Observation/' + FD.id ) = X.resultMembers[0].reference and
+        ( 'Observation/' + SD.id ) = X.resultMembers[1].reference
   return all Tuple { 
     polypSize: X.polypSize,
-    finalPathology: O.value }
+    finalPathology: FD.value, 
+    severeDysplasia: SD.value
+  }
