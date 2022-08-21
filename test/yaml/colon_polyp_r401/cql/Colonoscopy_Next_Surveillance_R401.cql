@@ -57,9 +57,19 @@ codesystem "ombCategory": 'urn:oid:2.16.840.1.113883.6.238' // #2106-3 White
 // a single code from a particular vocabulary standard used to represent a clinical concept. It is considered
 // best-practice not to create value sets containing a single code.
 
-code "Tubular adenoma (disorder)": '444408007' from "SNOMEDCT" display 'Tubular adenoma (disorder)'
-code "Hyperplastic polyp of intestine (disorder)": '89452002' from "SNOMEDCT" display 'Hyperplastic polyp of intestine (disorder)'
+// Discussion: I selected Tubular adenoma (disorder) over Tubular adenoma of colon (disorder) because 
+// ... specimens may come from tne rectum which is part of the large intestine but not part of the colon.
+// ... It would be nice to have a snomed code for Tubular adenoma of large intesting (disorder). 
+// Benign tubular adenoma (morphologic abnormality) was also considered, but it is a subset of Body Structure, 
+// ... which does not seem appropriate to me. 
+code "Tubular adenoma": '444408007' from "SNOMEDCT" display 'Tubular adenoma (disorder)'
+// or maybe it should be 'Benign tubular adenoma (morphologic abnormality) to be consistent with villous and tubulovillous adenoma; as in:
+// code "Benign tubular adenoma": '1156654007' from "SNOMEDCT" display 'Benign tubular adenoma (morphologic abnormality) '
+code "Hyperplastic polyp of intestine": '89452002' from "SNOMEDCT" display 'Hyperplastic polyp of intestine (disorder)'
 code "Intestinal mucous membrane structure (body structure)": '68534000' from "SNOMEDCT" display 'Intestinal mucous membrane structure (body structure)'
+code "Villous adenoma": '128859003' from "SNOMEDCT" display 'Villous adenoma (morphologic abnormality)'
+code "Tubulovillous adenoma": '61722000' from "SNOMEDCT" display 'Tubulovillous adenoma (morphologic abnormality)'
+// There is no Villous adenoma (disorder) or Tubulovillous adenoma (morphologic abnormality)
 code "Severe dysplasia": '55237006' from "SNOMEDCT" display 'Severe dysplasia (morphologic abnormality)'
 code "No evidence of malignant neoplasm": '110396000' from "SNOMEDCT" display 'No evidence of malignant neoplasm (finding)'
 code "Piecemeal excision": '787139004' from "SNOMEDCT" display 'Piecemeal excision'
@@ -404,3 +414,115 @@ define Yexpanded:
     severeDysplasia: SD.value,
     noEvidenceOfMalignantNeoplasm: NMN.value
   }
+
+define TubularAdenomas:
+  Yexpanded YE where YE.finalPathology ~ "Tubular adenoma"
+  return all YE
+
+define NumberOfTubularAdenomas:
+  Count(TubularAdenomas)
+
+define NumberOfVillousAdenomas: 
+  Count(
+    Yexpanded YE where YE.finalPathology ~ "Villous adenoma"
+    return all YE
+    )
+
+define NumberOfTubulovillousAdenomas: 
+  Count(
+    Yexpanded YE where YE.finalPathology ~ "Tubulovillous adenoma"
+    return all YE
+  )
+
+define NumberOfAdenomas: 
+   NumberOfTubularAdenomas + NumberOfVillousAdenomas + NumberOfTubulovillousAdenomas
+
+define NumberOfHyperplasticPolyps:
+  Count(
+    Yexpanded YE where YE.finalPathology ~ "Hyperplastic polyp of intestine"
+    return all YE    
+    )
+
+// LTE <= less than or equal to
+define NumberOfTubularAdenomasLTE10mm:
+  Count( 
+    Yexpanded YE where 
+      YE.finalPathology ~ "Tubular adenoma" and
+      YE.polypSize <= 10 'mm' 
+      return all YE
+    )
+
+define AnyPolypWithVillousOrTubulovillousHistolgy:
+  (NumberOfVillousAdenomas + NumberOfTubulovillousAdenomas) > 0
+
+define AnyAdenomaWithHighGradeDysplasia:
+  Count(
+      Yexpanded YE where 
+      ( YE.finalPathology ~ "Tubular adenoma" or
+      YE.finalPathology ~ "Villous adenoma" or
+      YE.finalPathology ~ "Tubulovillous adenoma" ) and
+      YE.severeDysplasia = true 
+      return all YE
+    ) > 0
+
+// GTE means greater than or equal to
+define AnyAdenomaGTE20mmAndPiecemealResection:
+  Count(
+      Yexpanded YE where 
+      ( YE.finalPathology ~ "Tubular adenoma" or
+      YE.finalPathology ~ "Villous adenoma" or
+      YE.finalPathology ~ "Tubulovillous adenoma" ) and
+      YE.polypSize >= 20 'mm' and 
+      YE.piecemealExcision = true
+      return all YE
+    ) > 0
+
+define AnyAdenomaGTE10mm: 
+  Count(
+      Yexpanded YE where 
+      ( YE.finalPathology ~ "Tubular adenoma" or
+      YE.finalPathology ~ "Villous adenoma" or
+      YE.finalPathology ~ "Tubulovillous adenoma" ) and
+      YE.polypSize >= 10 'mm' 
+      return all YE
+    ) > 0
+
+  define NextColonoscopyIntervals: 
+    // {
+    //   if ( 
+    //     NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Interval[ 7.0, 10.0 ] else Interval[10.0, 10.0], 
+    //   if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Interval[ 3.0, 5.0 ] else Interval[ 10.0, 10.0 ],
+    //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3 else 10,
+    //   if AnyAdenomaGTE10mm = true then 3 else 10,
+    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3 else 10,
+    //   if AnyAdenomaWithHighGradeDysplasia = true then 3 else 10,
+    //   if NumberOfAdenomas > 10 then 1 else 10,
+    //   if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10
+    // }
+    //     {
+    //   if ( NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Tuple{ 7, '7-10' }
+    //   if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Tuple{ 3, '3-5'}
+    //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3 else 10,
+    //   if AnyAdenomaGTE10mm = true then 3 else 10,
+    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3 else 10,
+    //   if AnyAdenomaWithHighGradeDysplasia = true then 3 else 10,
+    //   if NumberOfAdenomas > 10 then 1 else 10,
+    //   if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10
+    // }
+    {
+      if ( 
+        NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Interval[ 7.0, 10.0 ] else Interval[10.0, 10.0], 
+      if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Interval[ 3.0, 5.0 ] else Interval[ 10.0, 10.0 ],
+      if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+      if AnyAdenomaGTE10mm = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+      if AnyPolypWithVillousOrTubulovillousHistolgy = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+      if AnyAdenomaWithHighGradeDysplasia = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+      if NumberOfAdenomas > 10 then Interval[ 1.0, 1.0 ] else Interval[ 10.0, 10.0 ],
+      if AnyAdenomaGTE20mmAndPiecemealResection = true then Interval[ 0.5, 0.5 ] else Interval[ 10.0, 10.0 ]
+    }
+
+// THE SECTION ABOVE REALLY NEEDS TO BE TESTED!!!
+
+// this is not done.....
+define NextColonoscopyInterval:
+  Min(NextColonoscopyIntervals.low)

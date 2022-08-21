@@ -74,7 +74,7 @@
       },
       "codes" : {
          "def" : [ {
-            "name" : "Tubular adenoma (disorder)",
+            "name" : "Tubular adenoma",
             "id" : "444408007",
             "display" : "Tubular adenoma (disorder)",
             "accessLevel" : "Public",
@@ -82,7 +82,7 @@
                "name" : "SNOMEDCT"
             }
          }, {
-            "name" : "Hyperplastic polyp of intestine (disorder)",
+            "name" : "Hyperplastic polyp of intestine",
             "id" : "89452002",
             "display" : "Hyperplastic polyp of intestine (disorder)",
             "accessLevel" : "Public",
@@ -93,6 +93,22 @@
             "name" : "Intestinal mucous membrane structure (body structure)",
             "id" : "68534000",
             "display" : "Intestinal mucous membrane structure (body structure)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT"
+            }
+         }, {
+            "name" : "Villous adenoma",
+            "id" : "128859003",
+            "display" : "Villous adenoma (morphologic abnormality)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT"
+            }
+         }, {
+            "name" : "Tubulovillous adenoma",
+            "id" : "61722000",
+            "display" : "Tubulovillous adenoma (morphologic abnormality)",
             "accessLevel" : "Public",
             "codeSystem" : {
                "name" : "SNOMEDCT"
@@ -2344,6 +2360,1178 @@
                            "type" : "Property"
                         }
                      } ]
+                  }
+               }
+            }
+         }, {
+            "name" : "TubularAdenomas",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Query",
+               "source" : [ {
+                  "alias" : "YE",
+                  "expression" : {
+                     "name" : "Yexpanded",
+                     "type" : "ExpressionRef"
+                  }
+               } ],
+               "relationship" : [ ],
+               "where" : {
+                  "type" : "Equivalent",
+                  "operand" : [ {
+                     "name" : "ToConcept",
+                     "libraryName" : "FHIRHelpers",
+                     "type" : "FunctionRef",
+                     "operand" : [ {
+                        "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                        "type" : "As",
+                        "operand" : {
+                           "path" : "finalPathology",
+                           "scope" : "YE",
+                           "type" : "Property"
+                        }
+                     } ]
+                  }, {
+                     "type" : "ToConcept",
+                     "operand" : {
+                        "name" : "Tubular adenoma",
+                        "type" : "CodeRef"
+                     }
+                  } ]
+               },
+               "return" : {
+                  "distinct" : false,
+                  "expression" : {
+                     "name" : "YE",
+                     "type" : "AliasRef"
+                  }
+               }
+            }
+         }, {
+            "name" : "NumberOfTubularAdenomas",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "name" : "TubularAdenomas",
+                  "type" : "ExpressionRef"
+               }
+            }
+         }, {
+            "name" : "NumberOfVillousAdenomas",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "YE",
+                     "expression" : {
+                        "name" : "Yexpanded",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equivalent",
+                     "operand" : [ {
+                        "name" : "ToConcept",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "finalPathology",
+                              "scope" : "YE",
+                              "type" : "Property"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToConcept",
+                        "operand" : {
+                           "name" : "Villous adenoma",
+                           "type" : "CodeRef"
+                        }
+                     } ]
+                  },
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "name" : "YE",
+                        "type" : "AliasRef"
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "NumberOfTubulovillousAdenomas",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "YE",
+                     "expression" : {
+                        "name" : "Yexpanded",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equivalent",
+                     "operand" : [ {
+                        "name" : "ToConcept",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "finalPathology",
+                              "scope" : "YE",
+                              "type" : "Property"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToConcept",
+                        "operand" : {
+                           "name" : "Tubulovillous adenoma",
+                           "type" : "CodeRef"
+                        }
+                     } ]
+                  },
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "name" : "YE",
+                        "type" : "AliasRef"
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "NumberOfAdenomas",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Add",
+               "operand" : [ {
+                  "type" : "Add",
+                  "operand" : [ {
+                     "name" : "NumberOfTubularAdenomas",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "name" : "NumberOfVillousAdenomas",
+                     "type" : "ExpressionRef"
+                  } ]
+               }, {
+                  "name" : "NumberOfTubulovillousAdenomas",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "NumberOfHyperplasticPolyps",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "YE",
+                     "expression" : {
+                        "name" : "Yexpanded",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "Equivalent",
+                     "operand" : [ {
+                        "name" : "ToConcept",
+                        "libraryName" : "FHIRHelpers",
+                        "type" : "FunctionRef",
+                        "operand" : [ {
+                           "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                           "type" : "As",
+                           "operand" : {
+                              "path" : "finalPathology",
+                              "scope" : "YE",
+                              "type" : "Property"
+                           }
+                        } ]
+                     }, {
+                        "type" : "ToConcept",
+                        "operand" : {
+                           "name" : "Hyperplastic polyp of intestine",
+                           "type" : "CodeRef"
+                        }
+                     } ]
+                  },
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "name" : "YE",
+                        "type" : "AliasRef"
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "NumberOfTubularAdenomasLTE10mm",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Count",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "YE",
+                     "expression" : {
+                        "name" : "Yexpanded",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "relationship" : [ ],
+                  "where" : {
+                     "type" : "And",
+                     "operand" : [ {
+                        "type" : "Equivalent",
+                        "operand" : [ {
+                           "name" : "ToConcept",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                              "type" : "As",
+                              "operand" : {
+                                 "path" : "finalPathology",
+                                 "scope" : "YE",
+                                 "type" : "Property"
+                              }
+                           } ]
+                        }, {
+                           "type" : "ToConcept",
+                           "operand" : {
+                              "name" : "Tubular adenoma",
+                              "type" : "CodeRef"
+                           }
+                        } ]
+                     }, {
+                        "type" : "LessOrEqual",
+                        "operand" : [ {
+                           "name" : "ToQuantity",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
+                           "operand" : [ {
+                              "path" : "polypSize",
+                              "scope" : "YE",
+                              "type" : "Property"
+                           } ]
+                        }, {
+                           "value" : 10,
+                           "unit" : "mm",
+                           "type" : "Quantity"
+                        } ]
+                     } ]
+                  },
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "name" : "YE",
+                        "type" : "AliasRef"
+                     }
+                  }
+               }
+            }
+         }, {
+            "name" : "AnyPolypWithVillousOrTubulovillousHistolgy",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Greater",
+               "operand" : [ {
+                  "type" : "Add",
+                  "operand" : [ {
+                     "name" : "NumberOfVillousAdenomas",
+                     "type" : "ExpressionRef"
+                  }, {
+                     "name" : "NumberOfTubulovillousAdenomas",
+                     "type" : "ExpressionRef"
+                  } ]
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               } ]
+            }
+         }, {
+            "name" : "AnyAdenomaWithHighGradeDysplasia",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Greater",
+               "operand" : [ {
+                  "type" : "Count",
+                  "source" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "YE",
+                        "expression" : {
+                           "name" : "Yexpanded",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "finalPathology",
+                                          "scope" : "YE",
+                                          "type" : "Property"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Tubular adenoma",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              }, {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "finalPathology",
+                                          "scope" : "YE",
+                                          "type" : "Property"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Villous adenoma",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              } ]
+                           }, {
+                              "type" : "Equivalent",
+                              "operand" : [ {
+                                 "name" : "ToConcept",
+                                 "libraryName" : "FHIRHelpers",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                    "type" : "As",
+                                    "operand" : {
+                                       "path" : "finalPathology",
+                                       "scope" : "YE",
+                                       "type" : "Property"
+                                    }
+                                 } ]
+                              }, {
+                                 "type" : "ToConcept",
+                                 "operand" : {
+                                    "name" : "Tubulovillous adenoma",
+                                    "type" : "CodeRef"
+                                 }
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "Equal",
+                           "operand" : [ {
+                              "name" : "ToBoolean",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "asType" : "{http://hl7.org/fhir}boolean",
+                                 "type" : "As",
+                                 "operand" : {
+                                    "path" : "severeDysplasia",
+                                    "scope" : "YE",
+                                    "type" : "Property"
+                                 }
+                              } ]
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                              "value" : "true",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "name" : "YE",
+                           "type" : "AliasRef"
+                        }
+                     }
+                  }
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               } ]
+            }
+         }, {
+            "name" : "AnyAdenomaGTE20mmAndPiecemealResection",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Greater",
+               "operand" : [ {
+                  "type" : "Count",
+                  "source" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "YE",
+                        "expression" : {
+                           "name" : "Yexpanded",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "And",
+                           "operand" : [ {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Or",
+                                 "operand" : [ {
+                                    "type" : "Equivalent",
+                                    "operand" : [ {
+                                       "name" : "ToConcept",
+                                       "libraryName" : "FHIRHelpers",
+                                       "type" : "FunctionRef",
+                                       "operand" : [ {
+                                          "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                          "type" : "As",
+                                          "operand" : {
+                                             "path" : "finalPathology",
+                                             "scope" : "YE",
+                                             "type" : "Property"
+                                          }
+                                       } ]
+                                    }, {
+                                       "type" : "ToConcept",
+                                       "operand" : {
+                                          "name" : "Tubular adenoma",
+                                          "type" : "CodeRef"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "Equivalent",
+                                    "operand" : [ {
+                                       "name" : "ToConcept",
+                                       "libraryName" : "FHIRHelpers",
+                                       "type" : "FunctionRef",
+                                       "operand" : [ {
+                                          "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                          "type" : "As",
+                                          "operand" : {
+                                             "path" : "finalPathology",
+                                             "scope" : "YE",
+                                             "type" : "Property"
+                                          }
+                                       } ]
+                                    }, {
+                                       "type" : "ToConcept",
+                                       "operand" : {
+                                          "name" : "Villous adenoma",
+                                          "type" : "CodeRef"
+                                       }
+                                    } ]
+                                 } ]
+                              }, {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "finalPathology",
+                                          "scope" : "YE",
+                                          "type" : "Property"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Tubulovillous adenoma",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              } ]
+                           }, {
+                              "type" : "GreaterOrEqual",
+                              "operand" : [ {
+                                 "name" : "ToQuantity",
+                                 "libraryName" : "FHIRHelpers",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "path" : "polypSize",
+                                    "scope" : "YE",
+                                    "type" : "Property"
+                                 } ]
+                              }, {
+                                 "value" : 20,
+                                 "unit" : "mm",
+                                 "type" : "Quantity"
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "Equal",
+                           "operand" : [ {
+                              "name" : "ToBoolean",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "asType" : "{http://hl7.org/fhir}boolean",
+                                 "type" : "As",
+                                 "operand" : {
+                                    "path" : "piecemealExcision",
+                                    "scope" : "YE",
+                                    "type" : "Property"
+                                 }
+                              } ]
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                              "value" : "true",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "name" : "YE",
+                           "type" : "AliasRef"
+                        }
+                     }
+                  }
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               } ]
+            }
+         }, {
+            "name" : "AnyAdenomaGTE10mm",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Greater",
+               "operand" : [ {
+                  "type" : "Count",
+                  "source" : {
+                     "type" : "Query",
+                     "source" : [ {
+                        "alias" : "YE",
+                        "expression" : {
+                           "name" : "Yexpanded",
+                           "type" : "ExpressionRef"
+                        }
+                     } ],
+                     "relationship" : [ ],
+                     "where" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "Or",
+                           "operand" : [ {
+                              "type" : "Or",
+                              "operand" : [ {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "finalPathology",
+                                          "scope" : "YE",
+                                          "type" : "Property"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Tubular adenoma",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              }, {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                       "type" : "As",
+                                       "operand" : {
+                                          "path" : "finalPathology",
+                                          "scope" : "YE",
+                                          "type" : "Property"
+                                       }
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Villous adenoma",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              } ]
+                           }, {
+                              "type" : "Equivalent",
+                              "operand" : [ {
+                                 "name" : "ToConcept",
+                                 "libraryName" : "FHIRHelpers",
+                                 "type" : "FunctionRef",
+                                 "operand" : [ {
+                                    "asType" : "{http://hl7.org/fhir}CodeableConcept",
+                                    "type" : "As",
+                                    "operand" : {
+                                       "path" : "finalPathology",
+                                       "scope" : "YE",
+                                       "type" : "Property"
+                                    }
+                                 } ]
+                              }, {
+                                 "type" : "ToConcept",
+                                 "operand" : {
+                                    "name" : "Tubulovillous adenoma",
+                                    "type" : "CodeRef"
+                                 }
+                              } ]
+                           } ]
+                        }, {
+                           "type" : "GreaterOrEqual",
+                           "operand" : [ {
+                              "name" : "ToQuantity",
+                              "libraryName" : "FHIRHelpers",
+                              "type" : "FunctionRef",
+                              "operand" : [ {
+                                 "path" : "polypSize",
+                                 "scope" : "YE",
+                                 "type" : "Property"
+                              } ]
+                           }, {
+                              "value" : 10,
+                              "unit" : "mm",
+                              "type" : "Quantity"
+                           } ]
+                        } ]
+                     },
+                     "return" : {
+                        "distinct" : false,
+                        "expression" : {
+                           "name" : "YE",
+                           "type" : "AliasRef"
+                        }
+                     }
+                  }
+               }, {
+                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                  "value" : "0",
+                  "type" : "Literal"
+               } ]
+            }
+         }, {
+            "name" : "NextColonoscopyIntervals",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "List",
+               "element" : [ {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "Greater",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "0",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Less",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "3",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "7.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "Greater",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "2",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Less",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "5",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "5.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "And",
+                        "operand" : [ {
+                           "type" : "Greater",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "4",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Less",
+                           "operand" : [ {
+                              "name" : "NumberOfTubularAdenomasLTE10mm",
+                              "type" : "ExpressionRef"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "11",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Equal",
+                        "operand" : [ {
+                           "name" : "AnyAdenomaGTE10mm",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "value" : "true",
+                           "type" : "Literal"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Equal",
+                        "operand" : [ {
+                           "name" : "AnyPolypWithVillousOrTubulovillousHistolgy",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "value" : "true",
+                           "type" : "Literal"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Equal",
+                        "operand" : [ {
+                           "name" : "AnyAdenomaWithHighGradeDysplasia",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "value" : "true",
+                           "type" : "Literal"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "3.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Greater",
+                        "operand" : [ {
+                           "name" : "NumberOfAdenomas",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                           "value" : "10",
+                           "type" : "Literal"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "1.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "1.0",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               }, {
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Equal",
+                        "operand" : [ {
+                           "name" : "AnyAdenomaGTE20mmAndPiecemealResection",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                           "value" : "true",
+                           "type" : "Literal"
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "0.5",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "0.5",
+                        "type" : "Literal"
+                     }
+                  },
+                  "else" : {
+                     "lowClosed" : true,
+                     "highClosed" : true,
+                     "type" : "Interval",
+                     "low" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     },
+                     "high" : {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}Decimal",
+                        "value" : "10.0",
+                        "type" : "Literal"
+                     }
+                  }
+               } ]
+            }
+         }, {
+            "name" : "NextColonoscopyInterval",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Min",
+               "source" : {
+                  "type" : "Query",
+                  "source" : [ {
+                     "alias" : "$this",
+                     "expression" : {
+                        "name" : "NextColonoscopyIntervals",
+                        "type" : "ExpressionRef"
+                     }
+                  } ],
+                  "where" : {
+                     "type" : "Not",
+                     "operand" : {
+                        "type" : "IsNull",
+                        "operand" : {
+                           "path" : "low",
+                           "type" : "Property",
+                           "source" : {
+                              "name" : "$this",
+                              "type" : "AliasRef"
+                           }
+                        }
+                     }
+                  },
+                  "return" : {
+                     "distinct" : false,
+                     "expression" : {
+                        "path" : "low",
+                        "type" : "Property",
+                        "source" : {
+                           "name" : "$this",
+                           "type" : "AliasRef"
+                        }
+                     }
                   }
                }
             }
