@@ -487,7 +487,9 @@ define AnyAdenomaGTE10mm:
       return all YE
     ) > 0
 
-  define NextColonoscopyIntervals: 
+// ColonoscopyInterval means the time ineterval at which the next colonoscopy should be performed.
+
+  // define NextColonoscopyIntervals: 
     // {
     //   if ( 
     //     NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Interval[ 7.0, 10.0 ] else Interval[10.0, 10.0], 
@@ -509,20 +511,50 @@ define AnyAdenomaGTE10mm:
     //   if NumberOfAdenomas > 10 then 1 else 10,
     //   if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10
     // }
+    // {
+    //   if ( 
+    //     NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Interval[ 7.0, 10.0 ] else Interval[10.0, 10.0], 
+    //   if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Interval[ 3.0, 5.0 ] else Interval[ 10.0, 10.0 ],
+    //   // Interval[ 3.0, 5.0 ],
+    //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+    //   if AnyAdenomaGTE10mm = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+    //   if AnyAdenomaWithHighGradeDysplasia = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+    //   if NumberOfAdenomas > 10 then Interval[ 1.0, 1.0 ] else Interval[ 10.0, 10.0 ],
+    //   if AnyAdenomaGTE20mmAndPiecemealResection = true then Interval[ 0.5, 0.5 ] else Interval[ 10.0, 10.0 ]
+    // }
+
+
+// The next three defines are not totally intuitive. Please test it yourself
+// The question arises what if we have a point-in-time recommendation (e.g. 1 year) and an interval
+// ...recommendation (e.g. 1/2 year to 2 years). The answer in this instance is 1/2-1 year. That interval
+// ...in general should be Minimum(lower bounds) to Minimum(upper bounds). 
+define NextColonoscopyIntervalLowerBound:
     {
-      if ( 
-        NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then Interval[ 7.0, 10.0 ] else Interval[10.0, 10.0], 
-      if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Interval[ 3.0, 5.0 ] else Interval[ 10.0, 10.0 ],
-      if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
-      if AnyAdenomaGTE10mm = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
-      if AnyPolypWithVillousOrTubulovillousHistolgy = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
-      if AnyAdenomaWithHighGradeDysplasia = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
-      if NumberOfAdenomas > 10 then Interval[ 1.0, 1.0 ] else Interval[ 10.0, 10.0 ],
-      if AnyAdenomaGTE20mmAndPiecemealResection = true then Interval[ 0.5, 0.5 ] else Interval[ 10.0, 10.0 ]
+      if ( NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then 7.0 else 10.0,  // 7 - 10 years
+      if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then 3.0 else 10.0,  // 3-5 years
+      if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3.0 else 10.0, // 3 years
+      if AnyAdenomaGTE10mm = true then 3.0 else 10.0,                                                       // 3 years
+      if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3.0  else 10.0,                             // 3 years
+      if AnyAdenomaWithHighGradeDysplasia = true then 3.0 else 10.0 ,                                       // 3 years
+      if NumberOfAdenomas > 10 then 1.0 else 10.0,                                                          // 1 year
+      if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10.0                                   // 1/2 year
     }
 
-// THE SECTION ABOVE REALLY NEEDS TO BE TESTED!!!
+define NextColonoscopyIntervalUpperBound:
+    {
+      if ( NumberOfTubularAdenomasLTE10mm > 0 and NumberOfTubularAdenomasLTE10mm < 3 ) then 10.0 else 10.0, // 7 - 10 years
+      if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then 5.0 else 10.0,  // 3-5 years
+      if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3.0 else 10.0, // 3 years
+      if AnyAdenomaGTE10mm = true then 3.0 else 10.0,                                                       // 3 years
+      if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3.0  else 10.0,                             // 3 years
+      if AnyAdenomaWithHighGradeDysplasia = true then 3.0 else 10.0 ,                                       // 3 years
+      if NumberOfAdenomas > 10 then 1.0 else 10.0,                                                          // 1 year
+      if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10.0                                   // 1/2 year
+    }
 
-// this is not done.....
-define NextColonoscopyInterval:
-  Min(NextColonoscopyIntervals.low)
+define NextColonoscopyInterval: 
+  {
+    Min(NextColonoscopyIntervalLowerBound),
+    Min(NextColonoscopyIntervalUpperBound)
+  }
