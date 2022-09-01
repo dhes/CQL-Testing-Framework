@@ -1,23 +1,12 @@
 // # Introduction
 
-// This is a stub, beginning with the Factors_to_Consider_in_Managing_Chronic_Pain_R401_Test as a template
-// to create colonoscopy surviellance logic, putting to test the data structure created in colon-poylp-data entry repo
-
-// Proceeding from top to bottom will transform from pain to surveillance. 
-
 // NOTE: This version of the testing and example purposes only. It is not ready for clinical use and never been testing
 // in a live clinic scenario. 
 //
 // This logic takes a colon polyp diagnostic report and drills down into the details of each polyp 
 // as a prelude to determining how soon the next surviellance colonoscopy should be performed 
-// accoruding to American College of Gastroenterology (ACG) guidelines. For now I just want to see
-// if one can drill down into the details with reasonable logic. 
+// accoruding to guidelines. 
 // 
-// I have no affilliation with the ACG. No one in the ACG is aware of this work, unless they happen 
-// to have stumbled accross it in a repo search. 
-//
-// Likewise this work is based upon work by the CDS Connect Workgroup but there is no formal connection. 
-//
 // ##Source guideline: [Recommendations for Follow-Up After Colonoscopy and Polypectomy: A Consensus Update by the US Multi-Society Task Force on Colorectal Cancer](https://www.asge.org/docs/default-source/guidelines/recommendations-for-follow-up-after-colonoscopy-and-polypectomy-a-consensus-update-by-the-us-multi-society-task-force-on-colorectal-cancer-2020-march-gie.pdf?sfvrsn=2b0f8952_2)
 
 library Colonoscopy_Next_Surveillance_R401 version '0.0.1'
@@ -49,8 +38,8 @@ codesystem "v2-0487": 'http://terminology.hl7.org/CodeSystem/v2-0487' // #POL Po
 codesystem "ombCategory": 'urn:oid:2.16.840.1.113883.6.238' // #2106-3 White
 
 // ## Value sets ##
-
 // no values sets needed so far
+
 // ## Individual codes ##
 
 // list individual codes from code systems used directly in the CQL logic. Individual codes are used when there is
@@ -95,18 +84,6 @@ code "Pathology report final diagnosis": '34574-4' from "LOINC" display 'Patholo
 // LOINC#11529-5 Surgical pathology study
 code "Surgical pathology study": '11529-5' from "LOINC" display 'Surgical pathology study'
 
-
-// CQL currently requires concept declarations to contain references to code declarations.
-
-// concept "Morphine Milligram Equivalent (MME)":
-//   { "Morphine Milligram Equivalent (MME) code" } display 'Morphine Milligram Equivalent (MME)'
-
-// # Parameters #
-
-// The InclusionMedicationsLookbackPeriod allows CDS implementors to specify how far the inclusion logic should look
-// back for qualifying active medications. By default, the inclusion logic will look back 180 days.
-// parameter InclusionMedicationsLookbackPeriod default 180 days
-
 // # CDS logic #
 
 context Patient
@@ -131,88 +108,88 @@ define function DateTimeText(d FHIR.dateTime):
 // Returns a text representation of an instant using the CQL `ToString` function.
 // @param i - a FHIR instant to get text for
 // @returns {System.String} the text representation of the instant
-define function InstantText(i FHIR.instant):
-  ToString(i.value)
+// define function InstantText(i FHIR.instant):
+//   ToString(i.value)
 
 // Returns a text representation of a Quantity with the Quantity's value and unit.
 // If the unit is {score}, then omit it (as it is not useful to display)
 // @param q - a FHIR Quantity to get text for
 // @returns {System.String} the text representation of the Quantity
-define function QuantityText(q FHIR.Quantity):
-  if (q is null) then null
-  else if (q.unit is not null and q.unit.value != '{score}') then ToString(q.value.value) + ' ' + q.unit.value
-  else if (q.code is not null and q.code.value != '{score}') then ToString(q.value.value) + ' ' + q.code.value
-  else ToString(q.value.value)
+// define function QuantityText(q FHIR.Quantity):
+//   if (q is null) then null
+//   else if (q.unit is not null and q.unit.value != '{score}') then ToString(q.value.value) + ' ' + q.unit.value
+//   else if (q.code is not null and q.code.value != '{score}') then ToString(q.value.value) + ' ' + q.code.value
+//   else ToString(q.value.value)
 
 // Returns a tuple containing a Period's start and end as text representations.
 // @param p - a FHIR Period to get a tuple for
 // @returns {Tuple<Start System.String, End System.String>} the tuple representation of the Period
-define function PeriodObject(p FHIR.Period):
-  if p is null then null
-  else
-    {
-      Start: DateTimeText(p."start"),
-      End: DateTimeText(p."end")
-    }
+// define function PeriodObject(p FHIR.Period):
+//   if p is null then null
+//   else
+//     {
+//       Start: DateTimeText(p."start"),
+//       End: DateTimeText(p."end")
+//     }
 
 // Returns a tuple containing a Range's low and high as text representations.
 // @param r - a FHIR Range to get a tuple for
 // @returns {Tuple<Low System.String, High System.String>} the tuple representation of the Range
-define function RangeObject(r FHIR.Range):
-  if r is null then null
-  else
-    {
-      Low: QuantityText(r.low),
-      High: QuantityText(r.high)
-    }
+// define function RangeObject(r FHIR.Range):
+//   if r is null then null
+//   else
+//     {
+//       Low: QuantityText(r.low),
+//       High: QuantityText(r.high)
+//     }
 
 // Returns a text representation of a date associated with an Observation, preferring `effectiveDateTime`, then
 // `effectivePeriod.start`, then `issued`.
 // @param o - a FHIR Observation to get the text date from
 // @returns {System.String} the text representation of a relevant date from the Observation
-define function ObservationDate(o FHIR.Observation):
-  Coalesce(
-    DateTimeText(o.effective as FHIR.dateTime),
-    InstantText(o.effective as FHIR.instant),
-    DateTimeText((o.effective as FHIR.Period)."start"),
-    InstantText(o.issued)
-  )
+// define function ObservationDate(o FHIR.Observation):
+//   Coalesce(
+//     DateTimeText(o.effective as FHIR.dateTime),
+//     InstantText(o.effective as FHIR.instant),
+//     DateTimeText((o.effective as FHIR.Period)."start"),
+//     InstantText(o.issued)
+//   )
 
 // Returns a text representation of a date associated with a MedicationStatement, preferring `effectiveDateTime`, then
 // `.start`.
 // @param s - a FHIR MedicationStatement to get the text date from
 // @returns {System.String} the text representation of a relevant date from the MedicationStatement
-define function MedicationStatementDate(s FHIR.MedicationStatement):
-  Coalesce(
-    DateTimeText(s.effective as FHIR.dateTime),
-    DateTimeText((s.effective as FHIR.Period)."start")
-  )
+// define function MedicationStatementDate(s FHIR.MedicationStatement):
+//   Coalesce(
+//     DateTimeText(s.effective as FHIR.dateTime),
+//     DateTimeText((s.effective as FHIR.Period)."start")
+//   )
 
 // Returns a text representation of a Condition's onset, whether represented as a dateTime, Period, Quantity (Age),
 // Range (Age), or string.
 // @param c - a FHIR Condition to get the text representation of the onset from
 // @returns {System.String} the text representation of the Condition's onset
-define function Onset(c FHIR.Condition):
-  Coalesce( List{
-    DateTimeText(c.onset as FHIR.dateTime),
-    QuantityText(c.onset as FHIR.Age),
-    PeriodObject(c.onset as FHIR.Period),
-    RangeObject(c.onset as FHIR.Range),
-    (c.onset as FHIR.string).value
-  })
+// define function Onset(c FHIR.Condition):
+//   Coalesce( List{
+//     DateTimeText(c.onset as FHIR.dateTime),
+//     QuantityText(c.onset as FHIR.Age),
+//     PeriodObject(c.onset as FHIR.Period),
+//     RangeObject(c.onset as FHIR.Range),
+//     (c.onset as FHIR.string).value
+//   })
 
 // Returns a text representation of a Condition's abatement, whether represented as a dateTime, Period, Quantity (Age),
 // Range (Age), string, or boolean.
 // @param c - a FHIR Condition to get the text representation of the abatement from
 // @returns {System.String} the text representation of the Condition's abatement
-define function Abatement(c FHIR.Condition):
-  Coalesce( List{
-    DateTimeText(c.abatement as FHIR.dateTime),
-    QuantityText(c.abatement as FHIR.Age),
-    PeriodObject(c.abatement as FHIR.Period),
-    RangeObject(c.abatement as FHIR.Range),
-    (c.abatement as FHIR.string).value
-  })
+// define function Abatement(c FHIR.Condition):
+//   Coalesce( List{
+//     DateTimeText(c.abatement as FHIR.dateTime),
+//     QuantityText(c.abatement as FHIR.Age),
+//     PeriodObject(c.abatement as FHIR.Period),
+//     RangeObject(c.abatement as FHIR.Range),
+//     (c.abatement as FHIR.string).value
+//   })
 
 // ## Target population ##
 
