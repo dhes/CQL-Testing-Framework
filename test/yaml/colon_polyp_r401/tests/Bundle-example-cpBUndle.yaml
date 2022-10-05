@@ -866,4 +866,5 @@ data:
     subject:
       reference: Patient/example-cpPatient
     valueBoolean: true
-results: null
+results: 
+  NextColonoscopyInterval: [1,1]
