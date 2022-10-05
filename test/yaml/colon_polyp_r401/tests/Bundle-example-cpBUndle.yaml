@@ -1,0 +1,869 @@
+name: Ferd-Berfel
+data:
+  - resourceType: Patient
+    id: example-cpPatient
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-patient
+    extension:
+    - url: http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex
+      valueCode: M
+    identifier:
+    - system: http://example.com
+      value: '1325364'
+    name:
+    - family: Berfel
+      given:
+      - Ferd
+    gender: male
+    birthDate: '1987-02-03'
+    deceasedBoolean: false
+  - resourceType: DiagnosticReport
+    id: example-cpDiagnosticReport
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-diagnostic-report
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v2-0074
+        code: SP
+        display: Surgical Pathology
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '122645001'
+        display: Polyp from large intestine obtained by polypectomy (specimen)
+    subject:
+      reference: Patient/example-cpPatient
+    effectiveDateTime: '2021-10-04T00:00:00.000Z'
+    issued: '2021-10-05T00:00:00.000Z'
+    specimen:
+    - reference: Specimen/example-cpSpecimen0
+      display: 'A. COLD BIOPSY: CECAL POLYP'
+    - reference: Specimen/example-cpSpecimen1
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+    - reference: Specimen/example-cpSpecimen2
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+    - reference: Specimen/example-cpSpecimen3
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+    - reference: Specimen/example-cpSpecimen4
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+    - reference: Specimen/example-cpSpecimen5
+      display: D. COLD SNARE X 1
+    - reference: Specimen/example-cpSpecimen6
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+    - reference: Specimen/example-cpSpecimen7
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+    - reference: Specimen/example-cpSpecimen8
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+    - reference: Specimen/example-cpSpecimen9
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+    - reference: Specimen/example-cpSpecimen10
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+    - reference: Specimen/example-cpSpecimen11
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+    - reference: Specimen/example-cpSpecimen12
+      display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+    - reference: Specimen/example-cpSpecimen13
+      display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+    result:
+    - reference: Observation/example-cpResult0
+      display: 'A. COLD BIOPSY: CECAL POLYP'
+    - reference: Observation/example-cpResult1
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+    - reference: Observation/example-cpResult2
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+    - reference: Observation/example-cpResult3
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+    - reference: Observation/example-cpResult4
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+    - reference: Observation/example-cpResult5
+      display: D. COLD SNARE X 1
+    - reference: Observation/example-cpResult6
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+    - reference: Observation/example-cpResult7
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+    - reference: Observation/example-cpResult8
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+    - reference: Observation/example-cpResult9
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+    - reference: Observation/example-cpResult10
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+    - reference: Observation/example-cpResult11
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+    - reference: Observation/example-cpResult12
+      display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+    - reference: Observation/example-cpResult13
+      display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+  - resourceType: Specimen
+    id: example-cpSpecimen0
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 3
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '32713005'
+          display: Cecum structure (body structure)
+    note:
+    - text: 'A. COLD BIOPSY: CECAL POLYP'
+  - resourceType: Observation
+    id: example-cpResult0
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen0
+      display: A. Ascending colon polyp cold snare
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen1
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 6
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '9040008'
+          display: Ascending colon structure (body structure)
+    note:
+    - text: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+  - resourceType: Observation
+    id: example-cpResult1
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen1
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 1'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen2
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 6
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '9040008'
+          display: Ascending colon structure (body structure)
+    note:
+    - text: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+  - resourceType: Observation
+    id: example-cpResult2
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen2
+      display: 'B. COLD SNARE: ASCENDING COLON POLYP 2'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen3
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 8
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '485005'
+          display: Transverse colon structure (body structure)
+    note:
+    - text: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+  - resourceType: Observation
+    id: example-cpResult3
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen3
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 1'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen4
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 8
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '485005'
+          display: Transverse colon structure (body structure)
+    note:
+    - text: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+  - resourceType: Observation
+    id: example-cpResult4
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen4
+      display: 'C. COLD SNARE: TRANSVERSE COLON POLYP 2'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen5
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 6
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: D. COLD SNARE X 1
+  - resourceType: Observation
+    id: example-cpResult5
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen5
+      display: D. COLD SNARE X 1
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen6
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+  - resourceType: Observation
+    id: example-cpResult6
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen6
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 1'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen7
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+  - resourceType: Observation
+    id: example-cpResult7
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen7
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 2'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen8
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+  - resourceType: Observation
+    id: example-cpResult8
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen8
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 3'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen9
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+  - resourceType: Observation
+    id: example-cpResult9
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen9
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 4'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen10
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+  - resourceType: Observation
+    id: example-cpResult10
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen10
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 5'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen11
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '60184004'
+          display: Sigmoid colon structure (body structure)
+    note:
+    - text: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+  - resourceType: Observation
+    id: example-cpResult11
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen11
+      display: 'COLD BIOPSY X 5: SIGMOID COLON 6'
+    hasMember:
+    - reference: Observation/example-cpPathology-hyperplastic-polyp
+      display: Hyperplastic polyp of intestine (disorder)
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen12
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '34402009'
+          display: Rectum structure (body structure)
+    note:
+    - text: 'E. COLD BIOPSY: RECTAL POLYP 1'
+  - resourceType: Observation
+    id: example-cpResult12
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen12
+      display: 'E. COLD BIOPSY: RECTAL POLYP 1'
+    hasMember:
+    - reference: Observation/example-cpPathology-tubular-adenoma
+      display: Tubular adenoma of colon
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Specimen
+    id: example-cpSpecimen13
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-specimen
+    status: available
+    subject:
+      reference: Patient/example-cpPatient
+    collection:
+      collectedDateTime: '2021-10-04T00:00:00.000Z'
+      quantity:
+        value: 4
+        system: http://unitsofmeasure.org
+        code: mm
+      method:
+        coding:
+        - system: http://snomed.info/sct
+          code: '65801008'
+          display: Excision (procedure)
+      bodySite:
+        coding:
+        - system: http://snomed.info/sct
+          code: '34402009'
+          display: Rectum structure (body structure)
+    note:
+    - text: 'E. COLD BIOPSY: RECTAL POLYP 2'
+  - resourceType: Observation
+    id: example-cpResult13
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-result
+    status: final
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '250537006'
+        display: Histopathology finding (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    specimen:
+      reference: Specimen/example-cpSpecimen13
+      display: 'E. COLD BIOPSY: RECTAL POLYP 2'
+    hasMember:
+    - reference: Observation/example-cpPathology-hyperplastic-polyp
+      display: Hyperplastic polyp of intestine (disorder)
+    - reference: Observation/example-cpDysplasia-false
+      display: Severe dysplasia false
+    - reference: Observation/example-cpNoMalignantNeoplasm-true
+      display: No evidence of malignant neoplasm true
+  - resourceType: Observation
+    id: example-cpPathology-tubular-adenoma
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-pathology
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 34574-4
+        display: Pathology report final diagnosis
+    subject:
+      reference: Patient/example-cpPatient
+    valueCodeableConcept:
+      coding:
+      - system: http://snomed.info/sct
+        code: '444408007'
+        display: Tubular adenoma (disorder)
+  - resourceType: Observation
+    id: example-cpPathology-hyperplastic-polyp
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-pathology
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 34574-4
+        display: Pathology report final diagnosis
+    subject:
+      reference: Patient/example-cpPatient
+    valueCodeableConcept:
+      coding:
+      - system: http://snomed.info/sct
+        code: '89452002'
+        display: Hyperplastic polyp of intestine (disorder)
+  - resourceType: Observation
+    id: example-cpDysplasia-false
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-dysplasia
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '55237006'
+        display: Severe dysplasia (morphologic abnormality)
+    subject:
+      reference: Patient/example-cpPatient
+    valueBoolean: false
+  - resourceType: Observation
+    id: example-cpNoMalignantNeoplasm-true
+    meta:
+      profile:
+      - https://build.fhir.org/ig/dhes/ColonoscopyPolyp/StructureDefinition/cp-no-malignant-neoplasm
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '110396000'
+        display: No evidence of malignant neoplasm (finding)
+    subject:
+      reference: Patient/example-cpPatient
+    valueBoolean: true
+results: null
