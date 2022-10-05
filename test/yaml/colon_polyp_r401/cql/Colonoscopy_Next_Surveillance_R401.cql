@@ -83,7 +83,8 @@ code "White": '2106-3' from "ombCategory" display 'White'
 code "Pathology report final diagnosis": '34574-4' from "LOINC" display 'Pathology report final diagnosis'
 // LOINC#11529-5 Surgical pathology study
 code "Surgical pathology study": '11529-5' from "LOINC" display 'Surgical pathology study'
-
+// the next one is due to change in data model Sept-2022
+code "Histopathology Finding": '250537006' from "SNOMEDCT" display 'Histopathology finding (finding)'
 // # CDS logic #
 
 context Patient
@@ -205,7 +206,7 @@ define ResultListFromMostRecentColonoscopyPolypDiagnosticReport:
   return DR.result.reference.value
  
 define ResultsFromMostRecentColonoscopyPolypDiagnosticReport:
-  [Observation: "Large Intestine Polyp"] O
+  [Observation: "Histopathology Finding"] O
   with ResultListFromMostRecentColonoscopyPolypDiagnosticReport RL
   such that ('Observation/' + O.id) in RL
   // return Tuple {oId: O.id, oMember: O.hasMember[0].display}
