@@ -138,6 +138,14 @@
                "name" : "SNOMEDCT"
             }
          }, {
+            "name" : "Excision",
+            "id" : "65801008",
+            "display" : "Excision (procedure)",
+            "accessLevel" : "Public",
+            "codeSystem" : {
+               "name" : "SNOMEDCT"
+            }
+         }, {
             "name" : "Fiberoptic colonoscopy with biopsy (procedure)",
             "id" : "25732003",
             "display" : "Fiberoptic colonoscopy with biopsy (procedure)",
@@ -1222,6 +1230,17 @@
                            }
                         }
                      }, {
+                        "name" : "collectionMethod",
+                        "value" : {
+                           "path" : "method",
+                           "type" : "Property",
+                           "source" : {
+                              "path" : "collection",
+                              "scope" : "S",
+                              "type" : "Property"
+                           }
+                        }
+                     }, {
                         "name" : "resultMembers",
                         "value" : {
                            "path" : "hasMember",
@@ -1340,22 +1359,6 @@
                      }
                   }
                }, {
-                  "alias" : "PE",
-                  "expression" : {
-                     "dataType" : "{http://hl7.org/fhir}Observation",
-                     "templateId" : "http://hl7.org/fhir/StructureDefinition/Observation",
-                     "codeProperty" : "code",
-                     "codeComparator" : "~",
-                     "type" : "Retrieve",
-                     "codes" : {
-                        "type" : "ToList",
-                        "operand" : {
-                           "name" : "Piecemeal excision",
-                           "type" : "CodeRef"
-                        }
-                     }
-                  }
-               }, {
                   "alias" : "SD",
                   "expression" : {
                      "dataType" : "{http://hl7.org/fhir}Observation",
@@ -1400,84 +1403,42 @@
                   "operand" : [ {
                      "type" : "And",
                      "operand" : [ {
-                        "type" : "And",
+                        "type" : "Equal",
                         "operand" : [ {
-                           "type" : "Equal",
+                           "type" : "Concatenate",
                            "operand" : [ {
-                              "type" : "Concatenate",
-                              "operand" : [ {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "Observation/",
-                                 "type" : "Literal"
-                              }, {
-                                 "name" : "ToString",
-                                 "libraryName" : "FHIRHelpers",
-                                 "type" : "FunctionRef",
-                                 "operand" : [ {
-                                    "path" : "id",
-                                    "scope" : "FD",
-                                    "type" : "Property"
-                                 } ]
-                              } ]
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "Observation/",
+                              "type" : "Literal"
                            }, {
                               "name" : "ToString",
                               "libraryName" : "FHIRHelpers",
                               "type" : "FunctionRef",
                               "operand" : [ {
-                                 "path" : "reference",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "type" : "Indexer",
-                                    "operand" : [ {
-                                       "path" : "resultMembers",
-                                       "scope" : "X",
-                                       "type" : "Property"
-                                    }, {
-                                       "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "value" : "0",
-                                       "type" : "Literal"
-                                    } ]
-                                 }
+                                 "path" : "id",
+                                 "scope" : "FD",
+                                 "type" : "Property"
                               } ]
                            } ]
                         }, {
-                           "type" : "Equal",
+                           "name" : "ToString",
+                           "libraryName" : "FHIRHelpers",
+                           "type" : "FunctionRef",
                            "operand" : [ {
-                              "type" : "Concatenate",
-                              "operand" : [ {
-                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                                 "value" : "Observation/",
-                                 "type" : "Literal"
-                              }, {
-                                 "name" : "ToString",
-                                 "libraryName" : "FHIRHelpers",
-                                 "type" : "FunctionRef",
+                              "path" : "reference",
+                              "type" : "Property",
+                              "source" : {
+                                 "type" : "Indexer",
                                  "operand" : [ {
-                                    "path" : "id",
-                                    "scope" : "PE",
+                                    "path" : "resultMembers",
+                                    "scope" : "X",
                                     "type" : "Property"
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                                    "value" : "0",
+                                    "type" : "Literal"
                                  } ]
-                              } ]
-                           }, {
-                              "name" : "ToString",
-                              "libraryName" : "FHIRHelpers",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "path" : "reference",
-                                 "type" : "Property",
-                                 "source" : {
-                                    "type" : "Indexer",
-                                    "operand" : [ {
-                                       "path" : "resultMembers",
-                                       "scope" : "X",
-                                       "type" : "Property"
-                                    }, {
-                                       "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                                       "value" : "1",
-                                       "type" : "Literal"
-                                    } ]
-                                 }
-                              } ]
+                              }
                            } ]
                         } ]
                      }, {
@@ -1513,7 +1474,7 @@
                                     "type" : "Property"
                                  }, {
                                     "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                                    "value" : "2",
+                                    "value" : "1",
                                     "type" : "Literal"
                                  } ]
                               }
@@ -1553,7 +1514,7 @@
                                  "type" : "Property"
                               }, {
                                  "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
-                                 "value" : "3",
+                                 "value" : "2",
                                  "type" : "Literal"
                               } ]
                            }
@@ -1582,9 +1543,40 @@
                      }, {
                         "name" : "piecemealExcision",
                         "value" : {
-                           "path" : "value",
-                           "scope" : "PE",
-                           "type" : "Property"
+                           "type" : "If",
+                           "condition" : {
+                              "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                              "type" : "As",
+                              "operand" : {
+                                 "type" : "Equivalent",
+                                 "operand" : [ {
+                                    "name" : "ToConcept",
+                                    "libraryName" : "FHIRHelpers",
+                                    "type" : "FunctionRef",
+                                    "operand" : [ {
+                                       "path" : "collectionMethod",
+                                       "scope" : "X",
+                                       "type" : "Property"
+                                    } ]
+                                 }, {
+                                    "type" : "ToConcept",
+                                    "operand" : {
+                                       "name" : "Piecemeal excision",
+                                       "type" : "CodeRef"
+                                    }
+                                 } ]
+                              }
+                           },
+                           "then" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                              "value" : "true",
+                              "type" : "Literal"
+                           },
+                           "else" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                              "value" : "false",
+                              "type" : "Literal"
+                           }
                         }
                      }, {
                         "name" : "severeDysplasia",
@@ -1892,7 +1884,7 @@
                }
             }
          }, {
-            "name" : "AnyPolypWithVillousOrTubulovillousHistolgy",
+            "name" : "AnyPolypWithVillousOrTubulovillousHistology",
             "context" : "Patient",
             "accessLevel" : "Public",
             "expression" : {
@@ -2154,18 +2146,9 @@
                         }, {
                            "type" : "Equal",
                            "operand" : [ {
-                              "name" : "ToBoolean",
-                              "libraryName" : "FHIRHelpers",
-                              "type" : "FunctionRef",
-                              "operand" : [ {
-                                 "asType" : "{http://hl7.org/fhir}boolean",
-                                 "type" : "As",
-                                 "operand" : {
-                                    "path" : "piecemealExcision",
-                                    "scope" : "YE",
-                                    "type" : "Property"
-                                 }
-                              } ]
+                              "path" : "piecemealExcision",
+                              "scope" : "YE",
+                              "type" : "Property"
                            }, {
                               "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
                               "value" : "true",
@@ -2472,7 +2455,7 @@
                      "operand" : {
                         "type" : "Equal",
                         "operand" : [ {
-                           "name" : "AnyPolypWithVillousOrTubulovillousHistolgy",
+                           "name" : "AnyPolypWithVillousOrTubulovillousHistology",
                            "type" : "ExpressionRef"
                         }, {
                            "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",
@@ -2735,7 +2718,7 @@
                      "operand" : {
                         "type" : "Equal",
                         "operand" : [ {
-                           "name" : "AnyPolypWithVillousOrTubulovillousHistolgy",
+                           "name" : "AnyPolypWithVillousOrTubulovillousHistology",
                            "type" : "ExpressionRef"
                         }, {
                            "valueType" : "{urn:hl7-org:elm-types:r1}Boolean",

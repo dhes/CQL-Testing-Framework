@@ -62,6 +62,7 @@ code "Tubulovillous adenoma": '61722000' from "SNOMEDCT" display 'Tubulovillous 
 code "Severe dysplasia": '55237006' from "SNOMEDCT" display 'Severe dysplasia (morphologic abnormality)'
 code "No evidence of malignant neoplasm": '110396000' from "SNOMEDCT" display 'No evidence of malignant neoplasm (finding)'
 code "Piecemeal excision": '787139004' from "SNOMEDCT" display 'Piecemeal excision'
+code "Excision": '65801008' from "SNOMEDCT" display 'Excision (procedure)' // meaning 'non-piecemeal excision' or 'whole excision'
 code "Fiberoptic colonoscopy with biopsy (procedure)": '25732003' from "SNOMEDCT" display  'Fiberoptic colonoscopy with biopsy (procedure)'
 code "Colonoscopic polypectomy (procedure)": '311774002' from "SNOMEDCT" display 'Colonoscopic polypectomy (procedure)'
 code "Excision - action": '129304002' from "SNOMEDCT" display 'Excision - action'
@@ -218,6 +219,7 @@ define X:
     specimenId: S.id, 
     resultId: R.id, 
     polypSize: S.collection.quantity,
+		collectionMethod: S.collection.method,  // added 10-05-2022 DH was previously in Result
     resultMembers: R.hasMember
   }
 
@@ -249,18 +251,19 @@ define Y:
 // expand Y
 define Yexpanded:
   from [ Observation: "Pathology report final diagnosis" ] FD, 
-       [ Observation: "Piecemeal excision" ] PE, 
+      //  [ Observation: "Piecemeal excision" ] PE, // DH 10-05-2022 moved to Specimen.collection.method
        [ Observation: "Severe dysplasia" ] SD, 
        [ Observation: "No evidence of malignant neoplasm" ] NMN, 
        X X
   where ( 'Observation/' + FD.id ) = X.resultMembers[0].reference and
-        ( 'Observation/' + PE.id ) = X.resultMembers[1].reference and
-        ( 'Observation/' + SD.id ) = X.resultMembers[2].reference and
-        ( 'Observation/' + NMN.id ) = X.resultMembers[3].reference 
+        // ( 'Observation/' + PE.id ) = X.resultMembers[1].reference and
+        ( 'Observation/' + SD.id ) = X.resultMembers[1].reference and
+        ( 'Observation/' + NMN.id ) = X.resultMembers[2].reference 
   return all Tuple { 
     polypSize: X.polypSize,
     finalPathology: FD.value,
-    piecemealExcision: PE.value,
+    // piecemealExcision: PE.value, // DH 10-05-2022 moved to Specimen.collection.method
+		piecemealExcision: if (X.collectionMethod ~ "Piecemeal excision") then true else false,
     severeDysplasia: SD.value,
     noEvidenceOfMalignantNeoplasm: NMN.value
   }
@@ -302,7 +305,7 @@ define NumberOfTubularAdenomasLTE10mm:
       return all YE
     )
 
-define AnyPolypWithVillousOrTubulovillousHistolgy:
+define AnyPolypWithVillousOrTubulovillousHistology:
   (NumberOfVillousAdenomas + NumberOfTubulovillousAdenomas) > 0
 
 define AnyAdenomaWithHighGradeDysplasia:
@@ -346,7 +349,7 @@ define AnyAdenomaGTE10mm:
     //   if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Interval[ 3.0, 5.0 ] else Interval[ 10.0, 10.0 ],
     //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3 else 10,
     //   if AnyAdenomaGTE10mm = true then 3 else 10,
-    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3 else 10,
+    //   if AnyPolypWithVillousOrTubulovillousHistology = true then 3 else 10,
     //   if AnyAdenomaWithHighGradeDysplasia = true then 3 else 10,
     //   if NumberOfAdenomas > 10 then 1 else 10,
     //   if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10
@@ -356,7 +359,7 @@ define AnyAdenomaGTE10mm:
     //   if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then Tuple{ 3, '3-5'}
     //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3 else 10,
     //   if AnyAdenomaGTE10mm = true then 3 else 10,
-    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3 else 10,
+    //   if AnyPolypWithVillousOrTubulovillousHistology = true then 3 else 10,
     //   if AnyAdenomaWithHighGradeDysplasia = true then 3 else 10,
     //   if NumberOfAdenomas > 10 then 1 else 10,
     //   if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10
@@ -368,7 +371,7 @@ define AnyAdenomaGTE10mm:
     //   // Interval[ 3.0, 5.0 ],
     //   if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
     //   if AnyAdenomaGTE10mm = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
-    //   if AnyPolypWithVillousOrTubulovillousHistolgy = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
+    //   if AnyPolypWithVillousOrTubulovillousHistology = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
     //   if AnyAdenomaWithHighGradeDysplasia = true then Interval[ 3.0, 3.0 ] else Interval[ 10.0, 10.0 ],
     //   if NumberOfAdenomas > 10 then Interval[ 1.0, 1.0 ] else Interval[ 10.0, 10.0 ],
     //   if AnyAdenomaGTE20mmAndPiecemealResection = true then Interval[ 0.5, 0.5 ] else Interval[ 10.0, 10.0 ]
@@ -385,7 +388,7 @@ define NextColonoscopyIntervalLowerBound:
       if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then 3.0 else 10.0,  // 3-5 years
       if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3.0 else 10.0, // 3 years
       if AnyAdenomaGTE10mm = true then 3.0 else 10.0,                                                       // 3 years
-      if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3.0  else 10.0,                             // 3 years
+      if AnyPolypWithVillousOrTubulovillousHistology = true then 3.0  else 10.0,                             // 3 years
       if AnyAdenomaWithHighGradeDysplasia = true then 3.0 else 10.0 ,                                       // 3 years
       if NumberOfAdenomas > 10 then 1.0 else 10.0,                                                          // 1 year
       if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10.0                                   // 1/2 year
@@ -397,7 +400,7 @@ define NextColonoscopyIntervalUpperBound:
       if ( NumberOfTubularAdenomasLTE10mm > 2 and NumberOfTubularAdenomasLTE10mm < 5 ) then 5.0 else 10.0,  // 3-5 years
       if ( NumberOfTubularAdenomasLTE10mm > 4 and NumberOfTubularAdenomasLTE10mm < 11 ) then 3.0 else 10.0, // 3 years
       if AnyAdenomaGTE10mm = true then 3.0 else 10.0,                                                       // 3 years
-      if AnyPolypWithVillousOrTubulovillousHistolgy = true then 3.0  else 10.0,                             // 3 years
+      if AnyPolypWithVillousOrTubulovillousHistology = true then 3.0  else 10.0,                             // 3 years
       if AnyAdenomaWithHighGradeDysplasia = true then 3.0 else 10.0 ,                                       // 3 years
       if NumberOfAdenomas > 10 then 1.0 else 10.0,                                                          // 1 year
       if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10.0                                   // 1/2 year
