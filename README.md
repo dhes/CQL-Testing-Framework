@@ -1,6 +1,9 @@
 # Computing Colonoscopy
 
+[_artifacts_](https://artifacts.ai/what-is-an-artifact/)
+
 ![Knowledge Levels](/images/KnowledgeLevels.png)
+<sub>From https://cds.ahrq.gov/cdsconnect/about (scroll down to Knowledge Levels)</sub>
 
 This project converts Semi-Structure (level 2) Colonoscopy follow-up guidelines to a Structured (Level 3) artifact. In this testing environment a test file reside at test/yaml/colon_polyp_r401/tests/Bundle-example-cpBundle.yaml. 
 
