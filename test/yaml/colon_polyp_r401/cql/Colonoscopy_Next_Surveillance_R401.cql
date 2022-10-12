@@ -411,3 +411,9 @@ define NextColonoscopyInterval:
     Min(NextColonoscopyIntervalLowerBound),
     Min(NextColonoscopyIntervalUpperBound)
   }
+
+define NextColonoscopyMin:
+    Min(NextColonoscopyIntervalLowerBound)
+
+define NextColonoscopyMax:
+    Min(NextColonoscopyIntervalUpperBound)

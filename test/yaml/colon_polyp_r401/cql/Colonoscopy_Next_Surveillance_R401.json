@@ -2840,6 +2840,28 @@
                   }
                } ]
             }
+         }, {
+            "name" : "NextColonoscopyMin",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Min",
+               "source" : {
+                  "name" : "NextColonoscopyIntervalLowerBound",
+                  "type" : "ExpressionRef"
+               }
+            }
+         }, {
+            "name" : "NextColonoscopyMax",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "Min",
+               "source" : {
+                  "name" : "NextColonoscopyIntervalUpperBound",
+                  "type" : "ExpressionRef"
+               }
+            }
          } ]
       }
    }
