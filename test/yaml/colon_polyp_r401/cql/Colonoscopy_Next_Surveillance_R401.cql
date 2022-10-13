@@ -423,5 +423,7 @@ define RecommendationSimpleEnglish:
 	// year or years
 	// single number or interval
 	if NextColonoscopyMin = NextColonoscopyMax then 
-	   'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' years. ' else 
-	   'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' to ' & ToString(NextColonoscopyMax) & ' years.'
+	   if NextColonoscopyMin = 1 then
+	    'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' year. ' else 
+	  'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' years. ' else 
+	  'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' to ' & ToString(NextColonoscopyMax) & ' years.'

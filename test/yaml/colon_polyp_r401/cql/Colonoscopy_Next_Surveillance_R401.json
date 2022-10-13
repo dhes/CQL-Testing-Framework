@@ -2877,53 +2877,123 @@
                   }
                },
                "then" : {
-                  "type" : "Concatenate",
-                  "operand" : [ {
-                     "type" : "Coalesce",
-                     "operand" : [ {
-                        "type" : "Concatenate",
+                  "type" : "If",
+                  "condition" : {
+                     "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type" : "As",
+                     "operand" : {
+                        "type" : "Equal",
                         "operand" : [ {
-                           "type" : "Coalesce",
+                           "name" : "NextColonoscopyMin",
+                           "type" : "ExpressionRef"
+                        }, {
+                           "type" : "ToDecimal",
+                           "operand" : {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}Integer",
+                              "value" : "1",
+                              "type" : "Literal"
+                           }
+                        } ]
+                     }
+                  },
+                  "then" : {
+                     "type" : "Concatenate",
+                     "operand" : [ {
+                        "type" : "Coalesce",
+                        "operand" : [ {
+                           "type" : "Concatenate",
                            "operand" : [ {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "Next colonoscopy in ",
-                              "type" : "Literal"
+                              "type" : "Coalesce",
+                              "operand" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "Next colonoscopy in ",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "",
+                                 "type" : "Literal"
+                              } ]
                            }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "",
-                              "type" : "Literal"
+                              "type" : "Coalesce",
+                              "operand" : [ {
+                                 "type" : "ToString",
+                                 "operand" : {
+                                    "name" : "NextColonoscopyMin",
+                                    "type" : "ExpressionRef"
+                                 }
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "",
+                                 "type" : "Literal"
+                              } ]
                            } ]
                         }, {
-                           "type" : "Coalesce",
-                           "operand" : [ {
-                              "type" : "ToString",
-                              "operand" : {
-                                 "name" : "NextColonoscopyMin",
-                                 "type" : "ExpressionRef"
-                              }
-                           }, {
-                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                              "value" : "",
-                              "type" : "Literal"
-                           } ]
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "",
+                           "type" : "Literal"
                         } ]
                      }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "",
-                        "type" : "Literal"
+                        "type" : "Coalesce",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : " year. ",
+                           "type" : "Literal"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "",
+                           "type" : "Literal"
+                        } ]
                      } ]
-                  }, {
-                     "type" : "Coalesce",
+                  },
+                  "else" : {
+                     "type" : "Concatenate",
                      "operand" : [ {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : " years. ",
-                        "type" : "Literal"
+                        "type" : "Coalesce",
+                        "operand" : [ {
+                           "type" : "Concatenate",
+                           "operand" : [ {
+                              "type" : "Coalesce",
+                              "operand" : [ {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "Next colonoscopy in ",
+                                 "type" : "Literal"
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "",
+                                 "type" : "Literal"
+                              } ]
+                           }, {
+                              "type" : "Coalesce",
+                              "operand" : [ {
+                                 "type" : "ToString",
+                                 "operand" : {
+                                    "name" : "NextColonoscopyMin",
+                                    "type" : "ExpressionRef"
+                                 }
+                              }, {
+                                 "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                 "value" : "",
+                                 "type" : "Literal"
+                              } ]
+                           } ]
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "",
+                           "type" : "Literal"
+                        } ]
                      }, {
-                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
-                        "value" : "",
-                        "type" : "Literal"
+                        "type" : "Coalesce",
+                        "operand" : [ {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : " years. ",
+                           "type" : "Literal"
+                        }, {
+                           "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                           "value" : "",
+                           "type" : "Literal"
+                        } ]
                      } ]
-                  } ]
+                  }
                },
                "else" : {
                   "type" : "Concatenate",
