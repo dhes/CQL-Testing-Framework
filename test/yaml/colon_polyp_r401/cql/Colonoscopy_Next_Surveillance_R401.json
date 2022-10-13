@@ -2821,26 +2821,6 @@
                } ]
             }
          }, {
-            "name" : "NextColonoscopyInterval",
-            "context" : "Patient",
-            "accessLevel" : "Public",
-            "expression" : {
-               "type" : "List",
-               "element" : [ {
-                  "type" : "Min",
-                  "source" : {
-                     "name" : "NextColonoscopyIntervalLowerBound",
-                     "type" : "ExpressionRef"
-                  }
-               }, {
-                  "type" : "Min",
-                  "source" : {
-                     "name" : "NextColonoscopyIntervalUpperBound",
-                     "type" : "ExpressionRef"
-                  }
-               } ]
-            }
-         }, {
             "name" : "NextColonoscopyMin",
             "context" : "Patient",
             "accessLevel" : "Public",
@@ -2860,6 +2840,183 @@
                "source" : {
                   "name" : "NextColonoscopyIntervalUpperBound",
                   "type" : "ExpressionRef"
+               }
+            }
+         }, {
+            "name" : "NextColonoscopyInterval",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "List",
+               "element" : [ {
+                  "name" : "NextColonoscopyMin",
+                  "type" : "ExpressionRef"
+               }, {
+                  "name" : "NextColonoscopyMax",
+                  "type" : "ExpressionRef"
+               } ]
+            }
+         }, {
+            "name" : "RecommendationSimpleEnglish",
+            "context" : "Patient",
+            "accessLevel" : "Public",
+            "expression" : {
+               "type" : "If",
+               "condition" : {
+                  "asType" : "{urn:hl7-org:elm-types:r1}Boolean",
+                  "type" : "As",
+                  "operand" : {
+                     "type" : "Equal",
+                     "operand" : [ {
+                        "name" : "NextColonoscopyMin",
+                        "type" : "ExpressionRef"
+                     }, {
+                        "name" : "NextColonoscopyMax",
+                        "type" : "ExpressionRef"
+                     } ]
+                  }
+               },
+               "then" : {
+                  "type" : "Concatenate",
+                  "operand" : [ {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "Next colonoscopy in ",
+                              "type" : "Literal"
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "type" : "ToString",
+                              "operand" : {
+                                 "name" : "NextColonoscopyMin",
+                                 "type" : "ExpressionRef"
+                              }
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "",
+                        "type" : "Literal"
+                     } ]
+                  }, {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : " years. ",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "",
+                        "type" : "Literal"
+                     } ]
+                  } ]
+               },
+               "else" : {
+                  "type" : "Concatenate",
+                  "operand" : [ {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "type" : "Concatenate",
+                        "operand" : [ {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "type" : "Concatenate",
+                              "operand" : [ {
+                                 "type" : "Coalesce",
+                                 "operand" : [ {
+                                    "type" : "Concatenate",
+                                    "operand" : [ {
+                                       "type" : "Coalesce",
+                                       "operand" : [ {
+                                          "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                          "value" : "Next colonoscopy in ",
+                                          "type" : "Literal"
+                                       }, {
+                                          "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                          "value" : "",
+                                          "type" : "Literal"
+                                       } ]
+                                    }, {
+                                       "type" : "Coalesce",
+                                       "operand" : [ {
+                                          "type" : "ToString",
+                                          "operand" : {
+                                             "name" : "NextColonoscopyMin",
+                                             "type" : "ExpressionRef"
+                                          }
+                                       }, {
+                                          "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                          "value" : "",
+                                          "type" : "Literal"
+                                       } ]
+                                    } ]
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                    "value" : "",
+                                    "type" : "Literal"
+                                 } ]
+                              }, {
+                                 "type" : "Coalesce",
+                                 "operand" : [ {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                    "value" : " to ",
+                                    "type" : "Literal"
+                                 }, {
+                                    "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                                    "value" : "",
+                                    "type" : "Literal"
+                                 } ]
+                              } ]
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        }, {
+                           "type" : "Coalesce",
+                           "operand" : [ {
+                              "type" : "ToString",
+                              "operand" : {
+                                 "name" : "NextColonoscopyMax",
+                                 "type" : "ExpressionRef"
+                              }
+                           }, {
+                              "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                              "value" : "",
+                              "type" : "Literal"
+                           } ]
+                        } ]
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "",
+                        "type" : "Literal"
+                     } ]
+                  }, {
+                     "type" : "Coalesce",
+                     "operand" : [ {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : " years.",
+                        "type" : "Literal"
+                     }, {
+                        "valueType" : "{urn:hl7-org:elm-types:r1}String",
+                        "value" : "",
+                        "type" : "Literal"
+                     } ]
+                  } ]
                }
             }
          } ]

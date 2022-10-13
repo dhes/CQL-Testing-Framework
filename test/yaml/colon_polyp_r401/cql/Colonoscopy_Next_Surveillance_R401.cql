@@ -406,14 +406,22 @@ define NextColonoscopyIntervalUpperBound:
       if AnyAdenomaGTE20mmAndPiecemealResection = true then 0.5 else 10.0                                   // 1/2 year
     }
 
-define NextColonoscopyInterval: 
-  {
-    Min(NextColonoscopyIntervalLowerBound),
-    Min(NextColonoscopyIntervalUpperBound)
-  }
-
 define NextColonoscopyMin:
     Min(NextColonoscopyIntervalLowerBound)
 
 define NextColonoscopyMax:
     Min(NextColonoscopyIntervalUpperBound)
+
+define NextColonoscopyInterval: 
+  {
+    NextColonoscopyMin,
+    NextColonoscopyMax
+  }
+
+define RecommendationSimpleEnglish: 
+  // as in "Repeat colonoscopy in 1 year" or "Repeat colonoscopy in 7 to 10 years"
+	// year or years
+	// single number or interval
+	if NextColonoscopyMin = NextColonoscopyMax then 
+	   'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' years. ' else 
+	   'Next colonoscopy in ' & ToString(NextColonoscopyMin) & ' to ' & ToString(NextColonoscopyMax) & ' years.'
